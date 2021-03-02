@@ -1,0 +1,35 @@
+.bg-auth .right-side .login-frm .form-group .form-control {
+  box-shadow: none;
+  outline: none;
+  background: 0 0;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #262626;
+  font-size: 13px;
+  font-weight: 300;
+  height: 33px;
+}
+
+.has-error {
+  .error-sign {
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    right: 45px;
+    margin-top: -27.56px;
+    background: url("//www.instagram.com/static/sprites/core/8f1312.png");
+    background-position: -312px -322px;
+  }
+}
+
+.bg-auth .right-side .login-frm .btn-login .tb {
+  background: #3897f0;
+  border-color: #3897f0;
+  color: #fff;
+  outline: none;
+  font-family: Roboto, Helvetica, Arial;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 5px 12px;
+}

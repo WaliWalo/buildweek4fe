@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import SignupForm from "./SignupForm";
+import img1 from "../../assets/images/001.jpg";
+import img2 from "../../assets/images/002.jpg";
+import img3 from "../../assets/images/003.jpg";
+import img4 from "../../assets/images/004.jpg";
+import img5 from "../../assets/images/005.jpg";
+import style from "./signup.scss";
 
 class SignupPage extends Component {
   render() {
@@ -12,10 +18,19 @@ class SignupPage extends Component {
                 <div className="slider_img">
                   <ul className="this-list">
                     <li>
-                      <img
-                        src="https://via.placeholder.com/300/09f/fff.png"
-                        alt="image"
-                      />
+                      <img src={img1} alt="image" />
+                    </li>
+                    <li>
+                      <img src={img2} alt="image" />
+                    </li>
+                    <li>
+                      <img src={img3} alt="image" />
+                    </li>
+                    <li>
+                      <img src={img4} alt="image" />
+                    </li>
+                    <li>
+                      <img src={img5} alt="image" />
                     </li>
                   </ul>
                 </div>
