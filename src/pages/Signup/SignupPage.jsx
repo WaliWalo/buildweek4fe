@@ -17,7 +17,7 @@ class SignupPage extends Component {
               <div className="col-md-6 left-side">
                 <div className="slider_img">
                   <ul className="this-list">
-                    <li>
+                    {/* <li>
                       <img src={img1} alt="image" />
                     </li>
                     <li>
@@ -31,7 +31,7 @@ class SignupPage extends Component {
                     </li>
                     <li>
                       <img src={img5} alt="image" />
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>
@@ -44,12 +44,74 @@ class SignupPage extends Component {
                     <div className="omni-auth o-auth">
                       <div className="bti btw">
                         <a href="#" className="btn-omni btn-block">
-                          Login in with FB
+                          Login in with Facebook
                         </a>
+                        <p className="or">OR</p>
                       </div>
-                      <p className="or">OR</p>
                     </div>
-                    <SignupForm />
+
+                    <form className="lgn-form" onSubmit="">
+                      <div className="form-group _this_mrg">
+                        <input
+                          value="username"
+                          onBlur=""
+                          onChange=""
+                          type="text"
+                          name="username"
+                          placeholder="Username"
+                          className="form-control"
+                          autoComplete="off"
+                        />
+                        <span className="error-sign"></span>
+                      </div>
+                      <div className="form-group _this_mrg">
+                        <input
+                          value="fullname"
+                          onChange=""
+                          type="text"
+                          name="fullname"
+                          placeholder="Fullname"
+                          className="form-control"
+                          autoComplete="off"
+                        />
+                        <span className="error-sign"></span>
+                      </div>
+                      <div className="form-group _this_mrg">
+                        <input
+                          value="email"
+                          onBlur=""
+                          onChange=""
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          className="form-control"
+                          autoComplete="off"
+                        />
+                        <span className="error-sign"></span>
+                      </div>
+                      <div className="form-group">
+                        <input
+                          value="password"
+                          onChange=""
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          className="form-control"
+                          autoComplete="off"
+                        />
+                        <span className="error-sign"></span>
+                      </div>
+                      <div className="btn-login">
+                        <button
+                          disabled=""
+                          className="btn tb btn-block"
+                          type="submit"
+                        >
+                          Sign up
+                        </button>
+                      </div>
+                    </form>
+
                     <div className="term">
                       <p className="fo">
                         By signing up, your agree to our{" "}
