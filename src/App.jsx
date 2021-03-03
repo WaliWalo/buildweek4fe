@@ -10,17 +10,30 @@ import Footer from "./components/Navbar/Footer";
 import Header from "./components/Navbar/Header";
 import EditProfile from "./components/Profile/EditProfile";
 import Profile from "./components/Profile/Profile";
+import ProtectedRoute from "./customComponent/ProtectedRoute";
 
 function App() {
   return (
     <div className="App">
       <Container>
         <Header></Header>
-        <Route path="/home" exact render={(props) => <Home />} />
-        <Route path="/" exact render={(props) => <LoginSingUp />} />
-        <Route path="/profile" exact render={(props) => <Profile />} />
-        <Route path="/message" exact render={(props) => <Message />} />
-        <Route path="/editProfile" exact render={(props) => <EditProfile />} />
+        <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
+        <ProtectedRoute path="/home" exact component={Home} />
+        <ProtectedRoute
+          path="/profile"
+          exact
+          render={(props) => <Profile {...props} />}
+        />
+        <ProtectedRoute
+          path="/message"
+          exact
+          render={(props) => <Message {...props} />}
+        />
+        <ProtectedRoute
+          path="/editProfile"
+          exact
+          render={(props) => <EditProfile {...props} />}
+        />
 
         <Footer></Footer>
       </Container>

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import { loginUser } from "../../api/userApi";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.error);
+
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,11 +15,15 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     const resp = await loginUser({ email, password });
-    if (resp.data.status === "ok") {
+    console.log("response", resp);
+
+    if (resp.ok) {
       localStorage.setItem("LoggedIn", true);
+      dispatch({ type: "REMOVE_FROM_ERRORS" });
       history.push("/home");
     } else {
-      alert("Something went wrong");
+      const data = await resp.json();
+      dispatch({ type: "ADD_TO_ERRORS", payload: data });
     }
   };
 
@@ -47,7 +55,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
         </Form.Group>
-
+        {error.error && <Alert variant="danger">{error.error}</Alert>}
         <button type="submit" className="w-100 LoginBnt mt-2">
           Log In
         </button>
@@ -65,16 +73,27 @@ const Login = () => {
         </strong>
       </div>
       <div className="forgotPass mx-5 mx-md-4 mx-lg-5  mt-5 ">
-        <h6
-          className="d-flex justify-content-center align-items-center"
-          style={{ fontSize: "15px", fontWeight: "bold", color: "#385185" }}
-        >
-          <i
-            className="fab fa-facebook-square mr-2"
-            style={{ fontSize: "22px" }}
-          ></i>
-          Log in with Facebook
-        </h6>
+        <a href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}>
+          <h6
+            className="d-flex justify-content-center align-items-center"
+            style={{ fontSize: "15px", fontWeight: "bold", color: "#385185" }}
+          >
+            <i
+              className="fab fa-facebook-square mr-2"
+              style={{ fontSize: "22px" }}
+            ></i>
+            Log in with Facebook
+          </h6>
+        </a>
+        <a href={`${process.env.REACT_APP_BE_URL}/googleLogin`}>
+          <h6
+            className="d-flex justify-content-center align-items-center mt-3 text-success"
+            style={{ fontSize: "15px", fontWeight: "bold" }}
+          >
+            <i className="fab fa-google mr-2" style={{ fontSize: "20px" }}></i>
+            Log in with Google
+          </h6>
+        </a>
         <p className="text-center mt-4">Forgot password?</p>
       </div>
     </div>

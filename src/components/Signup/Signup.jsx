@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { registerUser } from "../../api/userApi";
 import { useHistory } from "react-router-dom";
 
@@ -40,7 +40,7 @@ const Singup = () => {
           width="50%"
         />
       </div>
-      <div className="mx-5 mx-md-4 mx-lg-5">
+      <div className="fbgoogleLogin mx-5 mx-md-4 mx-lg-5">
         <p
           className="text-center"
           style={{
@@ -52,13 +52,24 @@ const Singup = () => {
         >
           Sing up to see photos and videos from your friends
         </p>
-        <button className="w-100 LoginBnt d-flex align-items-center justify-content-center">
-          <i
-            className="fab fa-facebook-square mr-2"
-            style={{ fontSize: "20px" }}
-          ></i>
-          Log in with Facebook
-        </button>
+        <a href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}>
+          <button className="w-100 LoginBnt d-flex align-items-center justify-content-center">
+            <i
+              className="fab fa-facebook-square mr-2"
+              style={{ fontSize: "20px" }}
+            ></i>
+            Log in with Facebook
+          </button>
+        </a>
+        <a href={`${process.env.REACT_APP_BE_URL}/googleLogin`}>
+          <Button
+            className="w-100 googleBtn d-flex align-items-center justify-content-center mt-3"
+            variant="success"
+          >
+            <i className="fab fa-google mr-2" style={{ fontSize: "20px" }}></i>
+            Log in with Google
+          </Button>
+        </a>
       </div>
       <div className="divider mx-5 mx-md-4 mx-lg-5  my-4 ">
         <strong
