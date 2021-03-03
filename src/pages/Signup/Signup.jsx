@@ -7,7 +7,7 @@ import img4 from "../../assets/images/004.jpg";
 import img5 from "../../assets/images/005.jpg";
 import style from "./signup.scss";
 
-class SignupPage extends Component {
+class Signup extends Component {
   render() {
     return (
       <div className="bg-auth">
@@ -137,4 +137,4 @@ class SignupPage extends Component {
     );
   }
 }
-export default SignupPage;
+export default Signup;

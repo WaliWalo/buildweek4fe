@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import img1 from "../../assets/images/001.jpg";
 import { Link } from "react-router";
 
-class SignForm extends Component {
+class Login extends Component {
   render() {
     return (
       <div className="bg-auth">
@@ -96,3 +96,5 @@ class SignForm extends Component {
     );
   }
 }
+
+export default Login;
