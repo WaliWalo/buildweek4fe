@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from "./components/Footer/Footer";
+import FooterSignup from "./components/FooterSignup/FooterSignup";
+import FooterLogin from "./components/FooterLogin/FooterLogin";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Footer />
+      <FooterSignup />
     </div>
   );
 }
