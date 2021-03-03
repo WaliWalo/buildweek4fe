@@ -1,4 +1,3 @@
-
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fafafa;
@@ -15,6 +14,15 @@ body {
 
 .LoginBnt {
   background-color: #0095f6;
+  border: none;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 9px;
+}
+
+.googleBtn {
   border: none;
   font-weight: bold;
   color: white;
@@ -45,7 +53,13 @@ body {
   color: #0762b6;
 }
 
+.forgotPass a:hover {
+  text-decoration: none;
+}
 .LoginComp:last-of-type strong:hover {
   cursor: pointer;
 }
 
+.fbgoogleLogin a:hover {
+  text-decoration: none;
+}
