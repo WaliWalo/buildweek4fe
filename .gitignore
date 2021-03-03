@@ -27,3 +27,4 @@ debug.log
 es.lint
 .eslint
 .eslintcache
+package-lock.json
