@@ -2,10 +2,11 @@
 export default function (state = {}, action) {
   switch (action.type) {
     case "ADD_TO_ERRORS":
-      return state.errors.concat(action.payload);
+      console.log(action);
+      return action.payload;
 
     case "REMOVE_FROM_ERRORS":
-      return [...state.errors.filter((id) => id !== action.payload)];
+      return {};
     default:
       return state;
   }
