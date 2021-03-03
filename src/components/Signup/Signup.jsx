@@ -1,140 +1,124 @@
-import React, { Component } from "react";
-// import SignupForm from "./SignupForm";
-// import img1 from "../../assets/images/001.jpg";
-// import img2 from "../../assets/images/002.jpg";
-// import img3 from "../../assets/images/003.jpg";
-// import img4 from "../../assets/images/004.jpg";
-// import img5 from "../../assets/images/005.jpg";
-// import style from "./signup.scss";
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
+import { registerUser } from "../../api/userApi";
+import { useHistory } from "react-router-dom";
 
-class Signup extends Component {
-  render() {
-    return (
-      <div className="bg-auth">
-        <div className="container bg-auth">
-          <div className="row">
-            <div className="col-md-10 col-md-offset-2">
-              <div className="col-md-6 left-side">
-                <div className="slider_img">
-                  <ul className="this-list">
-                    {/* <li>
-                      <img src={img1} alt="image" />
-                    </li>
-                    <li>
-                      <img src={img2} alt="image" />
-                    </li>
-                    <li>
-                      <img src={img3} alt="image" />
-                    </li>
-                    <li>
-                      <img src={img4} alt="image" />
-                    </li>
-                    <li>
-                      <img src={img5} alt="image" />
-                    </li> */}
-                  </ul>
-                </div>
-              </div>
-              <div className="col md-5 right-side">
-                <div id="form-signup">
-                  <div className="login-frm">
-                    <div className="title-inst2">
-                      <span className="nj">Instagggram</span>
-                    </div>
-                    <div className="omni-auth o-auth">
-                      <div className="bti btw">
-                        <a href="#" className="btn-omni btn-block">
-                          Login in with Facebook
-                        </a>
-                        <p className="or">OR</p>
-                      </div>
-                    </div>
+const Singup = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState("");
 
-                    <form className="lgn-form" onSubmit="">
-                      <div className="form-group _this_mrg">
-                        <input
-                          value="username"
-                          onBlur=""
-                          onChange=""
-                          type="text"
-                          name="username"
-                          placeholder="Username"
-                          className="form-control"
-                          autoComplete="off"
-                        />
-                        <span className="error-sign"></span>
-                      </div>
-                      <div className="form-group _this_mrg">
-                        <input
-                          value="fullname"
-                          onChange=""
-                          type="text"
-                          name="fullname"
-                          placeholder="Fullname"
-                          className="form-control"
-                          autoComplete="off"
-                        />
-                        <span className="error-sign"></span>
-                      </div>
-                      <div className="form-group _this_mrg">
-                        <input
-                          value="email"
-                          onBlur=""
-                          onChange=""
-                          type="email"
-                          name="email"
-                          placeholder="Email"
-                          className="form-control"
-                          autoComplete="off"
-                        />
-                        <span className="error-sign"></span>
-                      </div>
-                      <div className="form-group">
-                        <input
-                          value="password"
-                          onChange=""
-                          type="password"
-                          name="password"
-                          placeholder="Password"
-                          className="form-control"
-                          autoComplete="off"
-                        />
-                        <span className="error-sign"></span>
-                      </div>
-                      <div className="btn-login">
-                        <button
-                          disabled=""
-                          className="btn tb btn-block"
-                          type="submit"
-                        >
-                          Sign up
-                        </button>
-                      </div>
-                    </form>
+  const register = async (e) => {
+    e.preventDefault(e);
 
-                    <div className="term">
-                      <p className="fo">
-                        By signing up, your agree to our{" "}
-                        <strong>Terms &amp; Privacy Policy</strong>
-                      </p>
-                    </div>
-                  </div>
-                  <div className="sign_up_switch">
-                    <p className="dont">
-                      Have an account?{" "}
-                      <span>
-                        <a>Log In</a>
-                      </span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div className="clear"></div>
-            </div>
-          </div>
-        </div>
+    const firstName = fullName.split(" ")[0];
+    const lastName = fullName.split(" ")[1];
+    console.log({ firstName, lastName });
+
+    const resp = await registerUser({
+      email,
+      password,
+      username,
+      firstName,
+      lastName,
+    });
+    if (resp.status === 201) {
+      localStorage.setItem("LoggedIn", true);
+      history.push("/home");
+    } else {
+      alert("something went wrong");
+    }
+  };
+  return (
+    <div className="LoginComp">
+      <div>
+        <img
+          src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
+          className="img-fluid"
+          width="50%"
+        />
       </div>
-    );
-  }
-}
-export default Signup;
+      <div className="mx-5 mx-md-4 mx-lg-5">
+        <p
+          className="text-center"
+          style={{
+            color: "#94989c",
+            fontWeight: "bold",
+            fontSize: "17px",
+            lineHeight: "20px",
+          }}
+        >
+          Sing up to see photos and videos from your friends
+        </p>
+        <button className="w-100 LoginBnt d-flex align-items-center justify-content-center">
+          <i
+            className="fab fa-facebook-square mr-2"
+            style={{ fontSize: "20px" }}
+          ></i>
+          Log in with Facebook
+        </button>
+      </div>
+      <div className="divider mx-5 mx-md-4 mx-lg-5  my-4 ">
+        <strong
+          style={{
+            background: "#fff",
+            padding: "0 20px",
+            color: "#aaa6a6",
+            fontSize: "14px",
+          }}
+        >
+          OR
+        </strong>
+      </div>
+      <form className="mx-5 mx-md-4 mx-lg-5 " onSubmit={register}>
+        <Form.Group className="mb-2">
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.currentTarget.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-2">
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
+        </Form.Group>
+
+        <button type="submit" className="w-100 LoginBnt mt-2">
+          Sing up
+        </button>
+      </form>
+
+      <div className="forgotPass mx-5 mx-md-4 mx-lg-5  mt-5 ">
+        <p className="text-center mt-4">
+          By signing up, you agree to our Terms , Data Policy and Cookies Policy
+          .
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Singup;
