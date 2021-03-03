@@ -1,0 +1,52 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+}
+
+.footer {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  background-color: #fafafa;
+}
+
+.footer .container {
+  margin-right: 10px;
+}
+
+.footer p > a:link {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: none;
+}
+
+.footer p > a:visited {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: none;
+}
+
+.footer p > a:hover {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: none;
+}
+
+.footer p > a:active {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: none;
+}
+
+.footer p > select {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: none;
+}
