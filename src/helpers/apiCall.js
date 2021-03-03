@@ -5,7 +5,7 @@ const refreshAuthLogic = (failedRequest) =>
   axios({
     url: `${process.env.REACT_APP_BE_URL}/refreshToken`,
     withCredentials: true,
-    method: "post",
+    method: "get",
   }).then((tokenRefreshResponse) => {
     return Promise.resolve();
   });

@@ -16,26 +16,14 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <Header></Header>
+        <Header />
         <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
         <ProtectedRoute path="/home" exact component={Home} />
-        <ProtectedRoute
-          path="/profile"
-          exact
-          render={(props) => <Profile {...props} />}
-        />
-        <ProtectedRoute
-          path="/message"
-          exact
-          render={(props) => <Message {...props} />}
-        />
-        <ProtectedRoute
-          path="/editProfile"
-          exact
-          render={(props) => <EditProfile {...props} />}
-        />
+        <ProtectedRoute path="/profile" exact component={Profile} />
+        <ProtectedRoute path="/message" exact component={Message} />
+        <ProtectedRoute path="/editProfile" exact component={EditProfile} />
 
-        <Footer></Footer>
+        <Footer />
       </Container>
     </div>
   );
