@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import MessageContent from "./MessageContent";
 export default function Message() {
   let socket = null;
-  const { conversations, messages } = useSelector((state) => state);
+  const { conversations } = useSelector((state) => state);
   const dispatch = useDispatch();
   const connOpt = {
     transports: ["websocket"],
@@ -72,6 +72,7 @@ export default function Message() {
     const response = await fetchConversations(convo._id);
     if (response.ok) {
       let data = await response.json();
+      console.log(data);
       dispatch({ type: "SET_SELECTEDCONVO", payload: convo });
       dispatch({ type: "ADD_TO_MESSAGES", payload: data });
     }
@@ -146,7 +147,6 @@ export default function Message() {
                       }
                     })
                     .join(", ");
-                  console.log(msgName);
                   return (
                     <ListGroup.Item
                       onClick={() => {
