@@ -1,38 +1,49 @@
-.App {
+body {
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  background-color: #fafafa;
+}
+.LoginComp {
+  background-color: #ffffff;
+  border: 1px solid #dfdfdf;
+}
+
+.LoginComp div:first-child {
+  display: flex;
+  justify-content: center;
+}
+
+.LoginBnt {
+  background-color: #0095f6;
+  border: none;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 5px 9px;
+}
+
+.divider {
+  border-top: 1px solid #dfdfdf;
+  display: block;
+  line-height: 1px;
+  margin: 15px 0;
+  position: relative;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-group input {
+  background-color: #fafafa;
+}
+.forgotPass p {
+  font-size: 12px;
+  color: #00376b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.forgotPass p:hover {
+  cursor: pointer;
+  color: #0762b6;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.LoginComp:last-of-type strong:hover {
+  cursor: pointer;
 }
