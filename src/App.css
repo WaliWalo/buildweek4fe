@@ -1,3 +1,4 @@
+
 body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fafafa;
@@ -47,3 +48,4 @@ body {
 .LoginComp:last-of-type strong:hover {
   cursor: pointer;
 }
+
