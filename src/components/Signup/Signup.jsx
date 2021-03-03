@@ -1,11 +1,36 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { registerUser } from "../../api/userApi";
+import { useHistory } from "react-router-dom";
 
 const Singup = () => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
+
+  const register = async (e) => {
+    e.preventDefault(e);
+
+    const firstName = fullName.split(" ")[0];
+    const lastName = fullName.split(" ")[1];
+    console.log({ firstName, lastName });
+
+    const resp = await registerUser({
+      email,
+      password,
+      username,
+      firstName,
+      lastName,
+    });
+    if (resp.status === 201) {
+      localStorage.setItem("LoggedIn", true);
+      history.push("/home");
+    } else {
+      alert("something went wrong");
+    }
+  };
   return (
     <div className="LoginComp">
       <div>
@@ -47,18 +72,38 @@ const Singup = () => {
           OR
         </strong>
       </div>
-      <form className="mx-5 mx-md-4 mx-lg-5 ">
+      <form className="mx-5 mx-md-4 mx-lg-5 " onSubmit={register}>
         <Form.Group className="mb-2">
-          <Form.Control type="email" placeholder="Enter email" />
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          />
         </Form.Group>
         <Form.Group className="mb-2">
-          <Form.Control type="text" placeholder="Full Name" />
+          <Form.Control
+            type="text"
+            placeholder="Full Name"
+            value={fullName}
+            onChange={(e) => setFullName(e.currentTarget.value)}
+          />
         </Form.Group>
         <Form.Group className="mb-2">
-          <Form.Control type="text" placeholder="Username" />
+          <Form.Control
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.currentTarget.value)}
+          />
         </Form.Group>
         <Form.Group className="mb-2">
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.currentTarget.value)}
+          />
         </Form.Group>
 
         <button type="submit" className="w-100 LoginBnt mt-2">

@@ -18,7 +18,7 @@ export const loginUser = async (body) => {
 export const registerUser = async (body) => {
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_BE_URL}/login`,
+      `${process.env.REACT_APP_BE_URL}/register`,
       body,
       {
         headers: { "Content-Type": "application/json" },

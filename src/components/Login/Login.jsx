@@ -12,6 +12,7 @@ const Login = () => {
     e.preventDefault();
     const resp = await loginUser({ email, password });
     if (resp.data.status === "ok") {
+      localStorage.setItem("LoggedIn", true);
       history.push("/home");
     } else {
       alert("Something went wrong");
