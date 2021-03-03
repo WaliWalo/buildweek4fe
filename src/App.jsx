@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Container>
-        <Header></Header>
+        <Header />
         <Route path="/home" exact render={(props) => <Home />} />
         <Route path="/" exact render={(props) => <LoginSingUp />} />
         <Route path="/profile" exact render={(props) => <Profile />} />
