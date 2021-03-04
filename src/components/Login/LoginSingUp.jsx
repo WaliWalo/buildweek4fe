@@ -7,7 +7,10 @@ const LoginSingUp = () => {
   const [account, setAccount] = useState(true);
 
   return (
-    <Row className="d-flex justify-content-center align-items-center">
+    <Row
+      className="d-flex justify-content-center align-items-center"
+      style={{ marginTop: "160px" }}
+    >
       <Col xs={10} sm={8} md={6} lg={4}>
         {account ? <Login /> : <Singup />}
 
