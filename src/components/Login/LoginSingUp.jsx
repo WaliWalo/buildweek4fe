@@ -9,7 +9,7 @@ const LoginSingUp = () => {
   return (
     <Row
       className="d-flex justify-content-center align-items-center"
-      style={{ height: "80vh" }}
+      style={{ marginTop: "160px" }}
     >
       <Col xs={10} sm={8} md={6} lg={4}>
         {account ? <Login /> : <Singup />}

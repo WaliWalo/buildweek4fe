@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Container } from "react-bootstrap";
-import { Route } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import LoginSingUp from "./components/Login/LoginSingUp";
@@ -19,23 +19,11 @@ function App() {
       <Container>
         <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
         <ProtectedRoute path="/home" exact component={Home} />
-        <ProtectedRoute
-          path="/profile"
-          exact
-          render={(props) => <Profile {...props} />}
-        />
-        <ProtectedRoute
-          path="/message"
-          exact
-          render={(props) => <Message {...props} />}
-        />
-        <ProtectedRoute
-          path="/editProfile"
-          exact
-          render={(props) => <EditProfile {...props} />}
-        />
+        <ProtectedRoute path="/profile" exact component={Profile} />
+        <ProtectedRoute path="/message" exact component={Message} />
+        <ProtectedRoute path="/editProfile" exact component={EditProfile} />
 
-        <Footer></Footer>
+        <Footer />
       </Container>
     </div>
   );
