@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import MessageContent from "./MessageContent";
 export default function Message() {
   let socket = null;
-  const { conversations } = useSelector((state) => state);
+  const { conversations, user } = useSelector((state) => state);
   const dispatch = useDispatch();
   const connOpt = {
     transports: ["websocket"],
@@ -30,16 +30,21 @@ export default function Message() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    socket.on("connect", () =>
-      socket.emit("userConnected", { userId: "603ce6ffee737d381cfc81be" })
-    );
-    getConversations("603ce6ffee737d381cfc81be");
-    fetchUsers();
-  }, []);
+    if (user) {
+      socket.on("connect", () =>
+        socket.emit("userConnected", { userId: user._id })
+      );
+
+      getConversations(user._id);
+      fetchUsers();
+    }
+  }, [user]);
 
   useEffect(() => {
-    getConversations("603ce6ffee737d381cfc81be");
-  }, [conversations.length]);
+    if (user) {
+      getConversations(user._id);
+    }
+  }, [conversations.length, user]);
 
   const fetchUsers = async () => {
     try {
@@ -61,11 +66,13 @@ export default function Message() {
   };
 
   const getConversations = async (userId) => {
-    const response = await fetchConversations(userId);
-    if (response.ok) {
-      let data = await response.json();
-      dispatch({ type: "ADD_TO_CONVERSATIONS", payload: data });
-    }
+    dispatch(async (dispatch) => {
+      const response = await fetchConversations(userId);
+      if (response.ok) {
+        let data = await response.json();
+        dispatch({ type: "ADD_TO_CONVERSATIONS", payload: data });
+      }
+    });
   };
 
   const handleConversationsClick = async (convo) => {
@@ -104,28 +111,32 @@ export default function Message() {
 
   const handleStartConvo = async () => {
     socket.emit("createConvo", {
-      currentUserId: "603ce6ffee737d381cfc81be",
+      currentUserId: user._id,
       participants: checked,
       oneDay: false,
     });
-    getConversations("603ce6ffee737d381cfc81be");
+    if (user) {
+      getConversations(user._id);
+    }
     setShow(false);
   };
 
   const handleOneDayConvo = async (e) => {
     console.log(e.currentTarget.id);
     socket.emit("createConvo", {
-      currentUserId: "603ce6ffee737d381cfc81be",
+      currentUserId: user._id,
       participants: [e.currentTarget.id],
       oneDay: true,
     });
     setShow(false);
-    getConversations("603ce6ffee737d381cfc81be");
+    if (user) {
+      getConversations(user._id);
+    }
     e.stopPropagation();
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "10vh" }}>
       <Container>
         <Row>
           <Col>
@@ -140,10 +151,12 @@ export default function Message() {
                 {conversations.map((conversation, index) => {
                   let msgName = conversation.participants
                     .map((participant) => {
-                      if (participant._id !== "603ce6ffee737d381cfc81be") {
-                        return participant.firstName;
-                      } else {
-                        return "";
+                      if (user) {
+                        if (participant._id !== user._id) {
+                          return participant.firstName;
+                        } else {
+                          return "";
+                        }
                       }
                     })
                     .join(", ");
@@ -174,29 +187,31 @@ export default function Message() {
             <ListGroup>
               {following.length > 0 ? (
                 following.map((follower) => {
-                  if (follower._id !== "603ce6ffee737d381cfc81be") {
-                    return (
-                      <ListGroup.Item
-                        action
-                        key={follower._id}
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        {follower.firstName}
-                        <Form.Check
-                          id={follower._id}
-                          onClick={(e) => handleUserSelect(e)}
-                        />
-                        <Button
-                          id={follower._id}
-                          onClick={(e) => handleOneDayConvo(e)}
+                  if (user) {
+                    if (follower._id !== user._id) {
+                      return (
+                        <ListGroup.Item
+                          action
+                          key={follower._id}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
                         >
-                          24Hr
-                        </Button>
-                      </ListGroup.Item>
-                    );
+                          {follower.firstName}
+                          <Form.Check
+                            id={follower._id}
+                            onClick={(e) => handleUserSelect(e)}
+                          />
+                          <Button
+                            id={follower._id}
+                            onClick={(e) => handleOneDayConvo(e)}
+                          >
+                            24Hr
+                          </Button>
+                        </ListGroup.Item>
+                      );
+                    }
                   }
                 })
               ) : (

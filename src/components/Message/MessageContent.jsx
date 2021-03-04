@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
 export default function MessageContent() {
   const dispatch = useDispatch();
-  const { selectedConvo, messages } = useSelector((state) => state);
+  const { selectedConvo, messages, user } = useSelector((state) => state);
   const [message, setMessage] = useState("");
   const [url, setUrl] = useState(null);
   let socket = null;
@@ -20,7 +20,7 @@ export default function MessageContent() {
     if (message !== "") {
       let to = "";
       if (selectedConvo.creator2) {
-        if ("603ce6ffee737d381cfc81be" === selectedConvo.creator2) {
+        if (user._id === selectedConvo.creator2) {
           to = selectedConvo.creator;
         } else {
           to = selectedConvo.creator2;
@@ -28,7 +28,7 @@ export default function MessageContent() {
         if (url) {
           socket.emit("sendMessage", {
             convoId: selectedConvo._id,
-            sender: "603ce6ffee737d381cfc81be",
+            sender: user._id,
             content: message,
             to,
             url,
@@ -37,7 +37,7 @@ export default function MessageContent() {
         } else {
           socket.emit("sendMessage", {
             convoId: selectedConvo._id,
-            sender: "603ce6ffee737d381cfc81be",
+            sender: user._id,
             content: message,
             to,
           });
@@ -47,7 +47,7 @@ export default function MessageContent() {
         if (url) {
           socket.emit("sendMessage", {
             convoId: selectedConvo._id,
-            sender: "603ce6ffee737d381cfc81be",
+            sender: user._id,
             content: message,
             url,
           });
@@ -55,7 +55,7 @@ export default function MessageContent() {
         } else {
           socket.emit("sendMessage", {
             convoId: selectedConvo._id,
-            sender: "603ce6ffee737d381cfc81be",
+            sender: user._id,
             content: message,
           });
           setMessage("");
