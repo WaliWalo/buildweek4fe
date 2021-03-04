@@ -70,7 +70,7 @@ export default function Message() {
       const response = await fetchConversations(userId);
       if (response.ok) {
         let data = await response.json();
-        dispatch({ type: "ADD_TO_CONVERSATIONS", payload: data });
+        await dispatch({ type: "ADD_TO_CONVERSATIONS", payload: data });
       }
     });
   };
