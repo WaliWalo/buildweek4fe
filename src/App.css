@@ -63,3 +63,26 @@ body {
 .fbgoogleLogin a:hover {
   text-decoration: none;
 }
+
+.EditProfileBtn {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 5px 9px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 1px solid #dbdbdb;
+  color: #262626;
+  border-radius: 5px;
+}
+
+.navBorderPofile {
+  border-top: 1px solid black;
+  color: black;
+}
+
+.ProfileNavBar p:hover {
+  cursor: pointer;
+}
+
+.navBorderPofileSmall {
+  color: #0095f6;
+}

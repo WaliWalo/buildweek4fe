@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import ProfileInfo from "./ProfileInfo";
+import ProfileNavBig from "./ProfileNavBig";
+import ProfileNavSmall from "./ProfileNavSmall";
 
 const Profile = () => {
-  const user = useSelector((state) => state.user);
+  const { user, posts } = useSelector((state) => state);
+  const postsByUser = posts.filter((post) => post.user._id === user._id);
+
+  const [pageNo, setPageNo] = useState(1);
+
   return (
-    <>
+    <div style={{ marginTop: "100px" }} className="mx-lg-5">
+      <ProfileInfo user={user} postNo={postsByUser.length} />
       <Row>
-        <Col xs={3}>
-          <img
-            src={
-              user && user.picture
-                ? user.picture
-                : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
-            }
-            width="150px"
-            className="img-fluid ml-4"
-            style={{ borderRadius: "50%", objectFit: "cover" }}
-          />
-        </Col>
-        <Col xs={9}></Col>
+        <ProfileNavBig pageNo={pageNo} setPageNo={setPageNo} />
+        <ProfileNavSmall pageNo={pageNo} setPageNo={setPageNo} />
       </Row>
-    </>
+    </div>
   );
 };
 

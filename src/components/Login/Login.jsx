@@ -73,7 +73,10 @@ const Login = () => {
         </strong>
       </div>
       <div className="forgotPass mx-5 mx-md-4 mx-lg-5  mt-5 ">
-        <a href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}>
+        <a
+          href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}
+          onClick={() => localStorage.setItem("LoggedIn", true)}
+        >
           <h6
             className="d-flex justify-content-center align-items-center"
             style={{ fontSize: "15px", fontWeight: "bold", color: "#385185" }}
@@ -85,7 +88,10 @@ const Login = () => {
             Log in with Facebook
           </h6>
         </a>
-        <a href={`${process.env.REACT_APP_BE_URL}/googleLogin`}>
+        <a
+          href={`${process.env.REACT_APP_BE_URL}/googleLogin`}
+          onClick={() => localStorage.setItem("LoggedIn", true)}
+        >
           <h6
             className="d-flex justify-content-center align-items-center mt-3 text-success"
             style={{ fontSize: "15px", fontWeight: "bold" }}
