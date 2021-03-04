@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { useDispatch } from "react-redux";
-import { fetchConversations } from "../../api/messageApi";
+import { fetchConversations, fetchMessages } from "../../api/messageApi";
 import {
   Button,
   Col,
   Container,
   Form,
+  Image,
   ListGroup,
   Modal,
   Row,
@@ -25,7 +26,6 @@ export default function Message() {
   const [show, setShow] = useState(false);
   const [following, setFollowing] = useState([]);
   const [checked, setChecked] = useState([]);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -34,23 +34,14 @@ export default function Message() {
       socket.on("connect", () =>
         socket.emit("userConnected", { userId: user._id })
       );
-
       getConversations(user._id);
       fetchUsers();
     }
+    // return socket.disconnect();
   }, [user]);
-
-  useEffect(() => {
-    if (user) {
-      getConversations(user._id);
-    }
-  }, [conversations.length, user]);
 
   const fetchUsers = async () => {
     try {
-      await fetch(`${process.env.REACT_APP_BE_URL}/refreshToken`, {
-        credentials: "include",
-      });
       const response = await fetch(`${process.env.REACT_APP_BE_URL}/users`, {
         credentials: "include",
       });
@@ -70,13 +61,14 @@ export default function Message() {
       const response = await fetchConversations(userId);
       if (response.ok) {
         let data = await response.json();
+
         await dispatch({ type: "ADD_TO_CONVERSATIONS", payload: data });
       }
     });
   };
 
   const handleConversationsClick = async (convo) => {
-    const response = await fetchConversations(convo._id);
+    const response = await fetchMessages(convo._id);
     if (response.ok) {
       let data = await response.json();
       console.log(data);
@@ -108,30 +100,29 @@ export default function Message() {
       }
     }
   };
-
+  socket.on("createConvo", (msg) => {
+    getConversations(user._id);
+    socket.emit("userConnected", { userId: user._id });
+  });
   const handleStartConvo = async () => {
     socket.emit("createConvo", {
       currentUserId: user._id,
       participants: checked,
       oneDay: false,
     });
-    if (user) {
-      getConversations(user._id);
-    }
+    setChecked([]);
+
     setShow(false);
   };
 
   const handleOneDayConvo = async (e) => {
-    console.log(e.currentTarget.id);
     socket.emit("createConvo", {
       currentUserId: user._id,
       participants: [e.currentTarget.id],
       oneDay: true,
     });
     setShow(false);
-    if (user) {
-      getConversations(user._id);
-    }
+    setChecked([]);
     e.stopPropagation();
   };
 
@@ -141,8 +132,12 @@ export default function Message() {
         <Row>
           <Col>
             <Row className="mb-3">
-              <Col>USERNAME</Col>
-              <Col>
+              <Col xs={10}>
+                <h6 style={{ fontWeight: "bold", fontSize: "40px" }}>
+                  {user && user.lastName}
+                </h6>
+              </Col>
+              <Col xs={2}>
                 <Button onClick={handleShow}>New</Button>
               </Col>
             </Row>
@@ -168,7 +163,25 @@ export default function Message() {
                       key={conversation._id}
                       action
                     >
-                      {msgName.slice(2)}
+                      <div className="d-flex">
+                        <Image
+                          src={
+                            conversation.creator2 &&
+                            conversation.creator2.picture
+                              ? conversation.creator2.picture
+                              : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
+                          }
+                          rounded
+                          height="70px"
+                          alt="user"
+                        />
+                        <p
+                          className="ml-3 pt-2"
+                          style={{ fontWeight: "bold", fontSize: "30px" }}
+                        >
+                          {msgName.slice(2)}
+                        </p>
+                      </div>
                     </ListGroup.Item>
                   );
                 })}
