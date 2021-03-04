@@ -1,101 +1,67 @@
 import React from "react";
 import "./Header.css";
 import { Navbar, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Home from "../Home/Home";
+import Profile from "../Profile/Profile";
+import Message from "../Message/Message";
 
 export default function Header() {
   return (
-    <Navbar fixed="top" justifyContent="center" display="flex">
-      <Navbar.Brand href="/">
-        <img
-          src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
-          alt="logo"
-          style={{ width: "100px", height: "55px" }}
-        />
-      </Navbar.Brand>
-      <div className="d-flex align-items-center">
-        <form method="post">
-          <input
-            type="text"
-            name="subject"
-            class="instaSearch"
-            value=""
-            placeholder="Search"
-          />
-        </form>
-      </div>
-      <div className="d-flex align-items-center">
-        <ul>
-          <li>
-            <a href="#">
-              <i class="fas fa-home"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fas fa-plus-square"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fas fa-paper-plane"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fas fa-compass"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fas fa-heart"></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
+    <Navbar expand="lg">
+      <Container>
+        <div className="logo">
+          <Navbar.Brand href="/">
+            <img
+              src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
+              alt="logo"
+              style={{ width: "100px", height: "55px" }}
+            />
+          </Navbar.Brand>
+        </div>
+
+        <div className="search">
+          <form method="post">
+            <input
+              type="text"
+              name="subject"
+              class="instaSearch"
+              value=""
+              placeholder="Search"
+            />
+          </form>
+        </div>
+        <span>
+          <Link to="/home" /* exact component={Home} */>
+            <i class="fas fa-xs fa-home"></i>
+          </Link>
+          <Link to="/addpost">
+            <i class="fas fa-xs fa-plus-square"></i>
+          </Link>
+          <Link
+            to="/message" /* exact render={(props) => <Message {...props} />} */
+          >
+            <i class="fas fa-xs fa-paper-plane"></i>
+          </Link>
+          <Link to="/randomposts" /* MAYBE LATER*/>
+            <i class="fas fa-xs fa-compass"></i>
+          </Link>
+          <Link to="/likes">
+            <i class="fas fa-xs fa-heart"></i>
+          </Link>
+          <div class="wrap-img">
+            <Link
+              to="/profile" /* exact render={(props) => <Profile {...props} />} */
+            >
               <img
                 class="profile-img"
                 src="https://via.placeholder.com/150"
-                alt=""
+                /* {this.state.user.picture} */ alt=""
               />
-            </a>
-          </li>
-        </ul>
-      </div>
+            </Link>
+          </div>
+        </span>
+      </Container>
     </Navbar>
-
-    /*     <nav>
-      <ul>
-        <li>
-          <a href="#">
-            <i class="fas fa-home"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-plus-square"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-paper-plane"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-compass"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-heart"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <img class="profile-img" src="" alt="" />
-          </a>
-        </li>
-      </ul>
-    </nav> */
   );
 }
