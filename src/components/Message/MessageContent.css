@@ -1,0 +1,28 @@
+.messaging {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+}
+.messages {
+  width: 30%;
+}
+.messageUser {
+  width: 70%;
+}
+
+.sendMSG {
+  border-top: 3px solid #057642;
+}
+
+.chatUsers:hover {
+  background: rgb(226, 225, 225);
+  cursor: pointer;
+}
+
+.ownMessage {
+  justify-content: flex-end;
+}
+
+.incomeMessage {
+  justify-content: flex-start;
+}
