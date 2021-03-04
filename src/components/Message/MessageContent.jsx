@@ -12,6 +12,7 @@ export default function MessageContent() {
   );
   const [message, setMessage] = useState("");
   const [url, setUrl] = useState(null);
+  const [senderName, setSenderName] = useState("");
   let socket = null;
   const connOpt = {
     transports: ["websocket"],
@@ -20,6 +21,7 @@ export default function MessageContent() {
   socket = io(process.env.REACT_APP_BE_URL, connOpt);
 
   socket.on("sendMessage", (msg) => {
+    setUrl(null);
     dispatch({ type: "ADD_ONE_TO_MESSAGES", payload: msg });
   });
 
@@ -93,25 +95,9 @@ export default function MessageContent() {
     const response = await fetchImgUrl(files[0]);
     if (response) {
       let url = await response.json();
-      console.log(url);
       setUrl(url.imageUrl);
     } else {
       return response;
-    }
-  };
-
-  const findUserName = async (userId) => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BE_URL}/users/${userId}`
-      );
-      if (response.ok) {
-        return await response.json();
-      } else {
-        console.log(response);
-      }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -139,7 +125,13 @@ export default function MessageContent() {
                     .join(", ")}
             </h3>
           </Row>
-          <Row style={{ height: "70vh" }}>
+          <Row
+            style={{
+              overflowY: "scroll",
+              height: "70vh",
+              marginBottom: "10px",
+            }}
+          >
             <div
               className="display-block"
               style={{ width: "-webkit-fill-available" }}
@@ -150,13 +142,13 @@ export default function MessageContent() {
                     <>
                       <div
                         className={
-                          message.sender === user._id
-                            ? "d-flex ownMessage px-2"
-                            : "d-flex incomeMessage px-2"
+                          message.sender._id === user._id
+                            ? "d-flex ownMessage px-2 my-2"
+                            : "d-flex incomeMessage px-2 my-2"
                         }
                         key={`msggg${index}`}
                       >
-                        {message.sender === user._id ? (
+                        {message.sender._id === user._id ? (
                           <>
                             <div
                               className="mr-2 text-right "
@@ -176,8 +168,8 @@ export default function MessageContent() {
                             <div>
                               <img
                                 src={user.picture}
-                                height="40px"
-                                width="40px"
+                                height="50px"
+                                width="10px"
                                 style={{
                                   borderRadius: "50%",
                                 }}
@@ -189,9 +181,13 @@ export default function MessageContent() {
                           <>
                             <div>
                               <img
-                                src="https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
-                                height="40px"
-                                width="40px"
+                                src={
+                                  message.sender && message.sender.picture
+                                    ? message.sender.picture
+                                    : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
+                                }
+                                height="50px"
+                                width="10px"
                                 style={{
                                   borderRadius: "50%",
                                 }}
@@ -200,7 +196,7 @@ export default function MessageContent() {
                             </div>
                             <div className="ml-2" style={{ fontSize: "14px" }}>
                               <p className="m-0" style={{ fontWeight: "bold" }}>
-                                {findUserName(message.to)}
+                                {message.sender.firstName}
                               </p>
                               <p>{message.content}</p>
                               {message.url && (
@@ -241,8 +237,6 @@ export default function MessageContent() {
                   <Form.Group>
                     <Form.File
                       id="custom-file"
-                      label="Custom file input"
-                      custom
                       onChange={(e) => handleFileSelected(e)}
                     />
                   </Form.Group>

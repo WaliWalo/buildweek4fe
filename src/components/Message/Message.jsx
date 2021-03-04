@@ -14,6 +14,8 @@ import {
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import MessageContent from "./MessageContent";
+import { PlusCircle } from "react-bootstrap-icons";
+
 export default function Message() {
   let socket = null;
   const { conversations, user } = useSelector((state) => state);
@@ -71,9 +73,11 @@ export default function Message() {
     const response = await fetchMessages(convo._id);
     if (response.ok) {
       let data = await response.json();
-      console.log(data);
+      console.log(typeof data, data);
       dispatch({ type: "SET_SELECTEDCONVO", payload: convo });
-      dispatch({ type: "ADD_TO_MESSAGES", payload: data });
+      dispatch((dispatch) => {
+        dispatch({ type: "ADD_TO_MESSAGES", payload: data });
+      });
     }
   };
 
@@ -127,18 +131,20 @@ export default function Message() {
   };
 
   return (
-    <div style={{ marginTop: "10vh" }}>
+    <div className="mt-2">
       <Container>
         <Row>
-          <Col>
+          <Col xs={4}>
             <Row className="mb-3">
               <Col xs={10}>
-                <h6 style={{ fontWeight: "bold", fontSize: "40px" }}>
-                  {user && user.lastName}
+                <h6 style={{ fontWeight: "bold", fontSize: "30px" }}>
+                  {user && user.firstName}
                 </h6>
               </Col>
               <Col xs={2}>
-                <Button onClick={handleShow}>New</Button>
+                <PlusCircle size={30} onClick={handleShow} className="mt-2" />
+                {/* <Button onClick={handleShow}>
+                </Button> */}
               </Col>
             </Row>
             <Row>
@@ -172,12 +178,12 @@ export default function Message() {
                               : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
                           }
                           rounded
-                          height="70px"
+                          height="50px"
                           alt="user"
                         />
                         <p
                           className="ml-3 pt-2"
-                          style={{ fontWeight: "bold", fontSize: "30px" }}
+                          style={{ fontWeight: "bold", fontSize: "20px" }}
                         >
                           {msgName.slice(2)}
                         </p>
@@ -188,7 +194,7 @@ export default function Message() {
               </ListGroup>
             </Row>
           </Col>
-          <Col>
+          <Col xs={8}>
             <MessageContent />
           </Col>
         </Row>
@@ -208,20 +214,23 @@ export default function Message() {
                           key={follower._id}
                           style={{
                             display: "flex",
-                            justifyContent: "space-between",
                           }}
                         >
-                          {follower.firstName}
-                          <Form.Check
-                            id={follower._id}
-                            onClick={(e) => handleUserSelect(e)}
-                          />
-                          <Button
-                            id={follower._id}
-                            onClick={(e) => handleOneDayConvo(e)}
-                          >
-                            24Hr
-                          </Button>
+                          <Col xs={9}>{follower.firstName}</Col>
+                          <Col xs={1}>
+                            <Form.Check
+                              id={follower._id}
+                              onClick={(e) => handleUserSelect(e)}
+                            />
+                          </Col>
+                          <Col xs={1}>
+                            <Button
+                              id={follower._id}
+                              onClick={(e) => handleOneDayConvo(e)}
+                            >
+                              24Hr
+                            </Button>
+                          </Col>
                         </ListGroup.Item>
                       );
                     }
