@@ -86,3 +86,74 @@ body {
 .navBorderPofileSmall {
   color: #0095f6;
 }
+
+.profileImg {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.hoverOverPosts {
+  display: none;
+}
+.postProfile {
+  position: relative;
+}
+.postProfile:hover .hoverOverPosts {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.507);
+}
+
+.CommentList p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.CommentListUser p:first-of-type:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.profileHeart:hover {
+  cursor: pointer;
+}
+
+.ReplyComment p:hover {
+  cursor: pointer;
+}
+
+.SendMsgIcons i:hover {
+  cursor: pointer;
+}
+
+.LikedByPost strong:first-of-type:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.LikedByPost strong:hover {
+  cursor: pointer;
+}
+
+.postBtn {
+  border: none;
+  background-color: white;
+  color: #0762b6;
+  font-weight: bold;
+  margin-right: 4px;
+}
+@media (max-width: 768px) {
+  .profileImg {
+    margin-top: 20px;
+    width: 77px;
+    height: 77px;
+  }
+}

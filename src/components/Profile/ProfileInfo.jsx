@@ -12,13 +12,11 @@ const ProfileInfo = ({ user, postNo }) => {
                 ? user.picture
                 : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
             }
-            width="150px"
-            className="img-fluid ml-4"
-            style={{ borderRadius: "50%", objectFit: "cover" }}
+            className="profileImg ml-4"
             alt="profile pic"
           />
         </Col>
-        <Col xs={9} md={6}>
+        <Col xs={9} md={7} lg={6}>
           <div className="d-flex justify-content-start align-items-center mt-3">
             <p
               className="mb-0 ml-5"
