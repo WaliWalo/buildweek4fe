@@ -12,7 +12,7 @@ export default function MessageContent() {
   );
   const [message, setMessage] = useState("");
   const [url, setUrl] = useState(null);
-  const [senderName, setSenderName] = useState("");
+
   let socket = null;
   const connOpt = {
     transports: ["websocket"],
@@ -113,8 +113,12 @@ export default function MessageContent() {
                   ? selectedConvo.creator2.picture
                   : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
               }
-              rounded
-              height="70px"
+              roundedCircle
+              style={{
+                width: "60px",
+                height: "60px",
+                border: "1px solid",
+              }}
               alt="user"
             ></Image>
             <h3 className="ml-2">
@@ -125,6 +129,7 @@ export default function MessageContent() {
                     .join(", ")}
             </h3>
           </Row>
+          <hr></hr>
           <Row
             style={{
               overflowY: "scroll",
@@ -160,56 +165,82 @@ export default function MessageContent() {
                               >
                                 {user.firstName}
                               </p>
-                              <p>{message.content}</p>
+                              <p
+                                style={{
+                                  fontSize: "20px",
+                                  borderRadius: "25px",
+                                  background: "#EFEFEF",
+                                  padding: "15px",
+                                }}
+                              >
+                                {message.content}
+                              </p>
                               {message.url && (
-                                <Image src={message.url} rounded />
+                                <Image
+                                  src={message.url}
+                                  rounded
+                                  style={{
+                                    border: "1px solid",
+                                  }}
+                                />
                               )}
                             </div>
-                            <div>
-                              <img
+                            {/* <div>
+                              <Image
                                 src={user.picture}
-                                height="50px"
-                                width="10px"
+                                roundedCircle
                                 style={{
-                                  borderRadius: "50%",
+                                  width: "60px",
+                                  height: "60px",
+                                  border: "1px solid",
                                 }}
-                                alt="user"
                               />
-                            </div>
+                            </div> */}
                           </>
                         ) : (
                           <>
                             <div>
-                              <img
+                              <Image
                                 src={
                                   message.sender && message.sender.picture
                                     ? message.sender.picture
                                     : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
                                 }
-                                height="50px"
-                                width="10px"
+                                roundedCircle
                                 style={{
-                                  borderRadius: "50%",
+                                  width: "60px",
+                                  height: "60px",
+                                  border: "1px solid",
                                 }}
-                                alt="user"
                               />
                             </div>
                             <div className="ml-2" style={{ fontSize: "14px" }}>
                               <p className="m-0" style={{ fontWeight: "bold" }}>
                                 {message.sender.firstName}
                               </p>
-                              <p>{message.content}</p>
+                              <p
+                                style={{
+                                  fontSize: "20px",
+                                  borderRadius: "25px",
+                                  background: "#EFEFEF",
+                                  padding: "15px",
+                                }}
+                              >
+                                {message.content}
+                              </p>
                               {message.url && (
-                                <Image src={message.url} rounded />
+                                <Image
+                                  src={message.url}
+                                  rounded
+                                  style={{
+                                    border: "1px solid",
+                                  }}
+                                />
                               )}
                             </div>
                           </>
                         )}
                       </div>
-                      {/* <div key={index}>
-                      <p>{message.content}</p>
-                      <Image src={message.url} rounded />
-                    </div> */}
                     </>
                   );
                 })}
@@ -233,7 +264,7 @@ export default function MessageContent() {
                     />
                   </Form.Group>
                 </Col>
-                <Col xs={2}>
+                <Col xs={2} style={{ paddingLeft: " 8px", paddingTop: "3px" }}>
                   <Form.Group>
                     <Form.File
                       id="custom-file"
