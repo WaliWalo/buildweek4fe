@@ -131,10 +131,10 @@ export default function Message() {
   };
 
   return (
-    <div className="mt-2">
-      <Container>
+    <div className="mt-5">
+      <Container style={{ border: "solid 1px #DBDBDB" }}>
         <Row>
-          <Col xs={4}>
+          <Col xs={4} style={{ border: "solid 1px #DBDBDB" }}>
             <Row className="mb-3">
               <Col xs={10}>
                 <h6 style={{ fontWeight: "bold", fontSize: "30px" }}>
@@ -161,6 +161,12 @@ export default function Message() {
                       }
                     })
                     .join(", ");
+                  if (conversation.participants.length === 2) {
+                    let temp = conversation.participants.filter(
+                      (participant) => participant._id !== user._id
+                    );
+                    msgName = temp[0].firstName;
+                  }
                   return (
                     <ListGroup.Item
                       onClick={() => {
@@ -177,15 +183,21 @@ export default function Message() {
                               ? conversation.creator2.picture
                               : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
                           }
-                          rounded
-                          height="50px"
+                          roundedCircle
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            border: "1px solid",
+                          }}
                           alt="user"
                         />
                         <p
                           className="ml-3 pt-2"
                           style={{ fontWeight: "bold", fontSize: "20px" }}
                         >
-                          {msgName.slice(2)}
+                          {conversation.participants.length !== 2
+                            ? msgName.slice(2)
+                            : msgName}
                         </p>
                       </div>
                     </ListGroup.Item>
@@ -194,7 +206,7 @@ export default function Message() {
               </ListGroup>
             </Row>
           </Col>
-          <Col xs={8}>
+          <Col xs={8} style={{ border: "solid 1px #DBDBDB" }}>
             <MessageContent />
           </Col>
         </Row>
