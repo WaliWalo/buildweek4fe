@@ -4,6 +4,7 @@ export default function (state = {}, action) {
     case "ADD_TO_MESSAGES":
       return action.payload;
     case "ADD_ONE_TO_MESSAGES":
+      console.log(action);
       const filter = state.filter(
         (message) => message._id === action.payload._id
       );
