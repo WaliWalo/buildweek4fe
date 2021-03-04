@@ -2,6 +2,11 @@ body {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   background-color: #fafafa;
 }
+
+.App {
+  min-width: 620px;
+}
+
 .LoginComp {
   background-color: #ffffff;
   border: 1px solid #dfdfdf;

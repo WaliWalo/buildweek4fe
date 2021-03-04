@@ -1,0 +1,8 @@
+.container {
+  min-width: 620px;
+}
+
+img {
+  border-radius: 50%;
+  width: 80px;
+}
