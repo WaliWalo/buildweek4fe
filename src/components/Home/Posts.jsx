@@ -10,13 +10,12 @@ import {
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getComments } from "../../api/commentsApi";
+import PostComments from "./PostComments";
 
 export default function Posts() {
   const { posts, user } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [myPosts, setMyPosts] = useState([]);
-  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     if (user) {
@@ -27,26 +26,13 @@ export default function Posts() {
         );
         filterMyPost = filterMyPost.concat(followingPost);
       });
-      const allComments = async () => await fetchComments();
-      allComments();
-      filterMyPost.forEach((post) => {
-        const postComments = comments.filter(
-          (comment) => comment.postId === post._id
-        );
-        post.comments = postComments;
-      });
+
       setMyPosts(
         filterMyPost.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
       );
     }
-  }, [user, posts.length, comments.length]);
+  }, [user, posts.length]);
 
-  const fetchComments = async () => {
-    const response = await getComments();
-    if (response.statusText === "OK") {
-      setComments(response.data);
-    }
-  };
   return (
     <Container>
       {myPosts &&
@@ -74,7 +60,11 @@ export default function Posts() {
                     <Carousel>
                       {post.urls.map((url) => (
                         <Carousel.Item interval={1000}>
-                          <Card.Img variant="top" src={url} />
+                          <Card.Img
+                            variant="top"
+                            src={url}
+                            style={{ maxHeight: "500px", objectFit: "cover" }}
+                          />
                         </Carousel.Item>
                       ))}
                     </Carousel>
@@ -85,53 +75,7 @@ export default function Posts() {
                         <i className="far fa-paper-plane fa-2x ml-3"></i>
                         <i className="far fa-bookmark fa-2x "></i>
                       </div>
-                      <Card.Text className="like">
-                        <div className="likepic-wrapper">
-                          <a href="#">
-                            <img class="likepic" src={user.picture} alt="" />
-                          </a>
-                        </div>
-                        <div className="liketext-wrapper  ml-2 mt-4">
-                          <p className="liketext">
-                            <strong>soberjin</strong>,&nbsp;
-                            <strong>liomessi</strong>
-                            &nbsp; and &nbsp; <strong>456732 others</strong>
-                            &nbsp; liked this
-                          </p>
-                        </div>
-                      </Card.Text>
-
-                      <div className="comment">
-                        <p>
-                          <strong>fakermal</strong>
-                          &nbsp;&nbsp; I look good!
-                        </p>
-                      </div>
-                      <div className="comment">
-                        <p>
-                          <strong>seriousjin</strong>
-                          &nbsp;&nbsp; yes, you do
-                        </p>
-                      </div>
-                      <div className="comment">
-                        <p>
-                          <strong>enisasllani</strong>
-                          &nbsp;&nbsp; I look better
-                        </p>
-                      </div>
-                      <hr></hr>
-                      <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                          <InputGroup.Text id="basic-addon1">
-                            <i className="far fa-smile"></i>
-                          </InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                          placeholder="Add a comment..."
-                          aria-label="comment"
-                          aria-describedby="basic-addon1"
-                        />
-                      </InputGroup>
+                      <PostComments post={post} />
                     </Card.Body>
                   </Card>
                 </Col>
