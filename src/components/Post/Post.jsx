@@ -36,7 +36,7 @@ export default function Post() {
                 </div>
               </Card.Text>
               <Card.Img variant="top" src={Ibra} />
-              <Card.Body>
+              <Card.Body className="postcardbody">
                 <div className="iconwrapper">
                   <i className="far fa-heart fa-2x"></i>
                   <i className="far fa-comment fa-2x ml-3"></i>

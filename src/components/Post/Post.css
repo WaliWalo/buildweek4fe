@@ -26,11 +26,11 @@
   margin-top: 30px;
 }
 
-.far.fa-bookmark {
-  margin-left: 24rem;
+.postcardbody .far.fa-bookmark {
+  margin-left: 30rem;
 }
 
-.card.body {
+.postcardbody {
   justify-content: space-between;
 }
 .iconwrapper a {

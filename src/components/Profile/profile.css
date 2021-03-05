@@ -33,3 +33,7 @@
     max-width: 100% !important;
   }
 }
+
+.userstats p {
+  margin-left: 3rem;
+}
