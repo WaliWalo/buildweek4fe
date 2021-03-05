@@ -6,7 +6,7 @@
   justify-content: space-between;
 }
 
-.left-up div > p,
+.left-up p,
 .col > span {
   display: flex;
   align-items: left;
@@ -24,6 +24,7 @@
 
 .maintxtwrap {
   margin-top: 30px;
+  margin-left: 0px;
 }
 .pic-wrapper {
   width: 50px;

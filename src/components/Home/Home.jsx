@@ -157,7 +157,7 @@ export default function Home() {
               </Col>
             </Row>
             <Row>
-              <Col className="footherhome mt-5">
+              <Col className="footerhome mt-5">
                 <span>
                   <a href="#" alt="About">
                     About
@@ -184,7 +184,7 @@ export default function Home() {
               </Col>
             </Row>
             <Row>
-              <Col className="footherhome">
+              <Col className="footerhome">
                 <span>
                   <a href="#" alt="Locations">
                     Locations
@@ -202,7 +202,7 @@ export default function Home() {
               </Col>
             </Row>
             <Row>
-              <Col className="footherhome">
+              <Col className="footerhome">
                 <p>© 2021 Instagram from Facebook</p>
               </Col>
             </Row>
