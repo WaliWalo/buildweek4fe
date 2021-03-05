@@ -51,3 +51,18 @@ export const getUser = async () => {
     console.log(err);
   }
 };
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BE_URL}/users/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};

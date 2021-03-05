@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Container className="mt-5">
+      <Container className="mt-5 HomeContainer">
         <Row>
           <Col md={{ span: 6, offset: 2 }}>{`md={{ span: 8, offset: 0 }}`}</Col>
           <Col md={2} className="d-none d-lg-block d-xl-block">

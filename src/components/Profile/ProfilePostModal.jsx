@@ -17,7 +17,13 @@ const ProfilePostModal = ({
 
   return (
     <>
-      <Modal size="lg" centered show={show} onHide={handleClose}>
+      <Modal
+        size="lg"
+        centered
+        show={show}
+        onHide={handleClose}
+        className="postModal"
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Row className="no-gutters">

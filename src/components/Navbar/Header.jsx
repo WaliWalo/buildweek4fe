@@ -2,16 +2,15 @@ import React from "react";
 import "./Header.css";
 import { Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Home from "../Home/Home";
-import Profile from "../Profile/Profile";
-import Message from "../Message/Message";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { user } = useSelector((state) => state);
   return (
     <Navbar expand="lg">
-      <Container>
+      <Container className="HomeContainer">
         <div className="logo">
-          <Navbar.Brand href="/">
+          <Navbar.Brand href="/home">
             <img
               src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
               alt="logo"
@@ -51,12 +50,12 @@ export default function Header() {
           </Link>
           <div class="wrap-img">
             <Link
-              to="/profile" /* exact render={(props) => <Profile {...props} />} */
+              to="/profile/me" /* exact render={(props) => <Profile {...props} />} */
             >
               <img
                 class="profile-img"
-                src="https://via.placeholder.com/150"
-                /* {this.state.user.picture} */ alt=""
+                src={user && user.picture}
+                /* {this.state.user.picture} */ alt="user avatar"
               />
             </Link>
           </div>
