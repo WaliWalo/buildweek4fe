@@ -138,7 +138,7 @@ export default function Message() {
             <Row className="mb-3">
               <Col xs={10}>
                 <h6 style={{ fontWeight: "bold", fontSize: "30px" }}>
-                  {user && user.firstName}
+                  {user && user.username}
                 </h6>
               </Col>
               <Col xs={2}>
