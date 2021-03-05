@@ -10,8 +10,10 @@ import Jin2 from "../../assets/images/jin2.png";
 import Tobia from "../../assets/images/tobia.png";
 import Posts from "./Posts";
 import Story from "./Story";
+import { useSelector } from "react-redux";
 
 export default function Home() {
+  const { user } = useSelector((state) => state);
   return (
     <div>
       {/* <Header /> */}
@@ -32,14 +34,16 @@ export default function Home() {
                   <a href="#">
                     <img
                       class="mainpic"
-                      src="https://via.placeholder.com/200"
+                      src={
+                        user ? user.picture : "https://via.placeholder.com/200"
+                      }
                       alt=""
                     />
                   </a>
                 </div>
                 <div className="maintxtwrap">
                   <p className="maintxt">
-                    <strong>ProfileName</strong>
+                    <strong>{user && user.username}</strong>
                   </p>
                 </div>
                 <div className="mainlinkwrap">
