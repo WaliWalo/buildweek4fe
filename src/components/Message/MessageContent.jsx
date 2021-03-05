@@ -146,9 +146,9 @@ export default function MessageContent() {
             ></Image>
             <h3 className="ml-2">
               {selectedConvo.participants.length === 2
-                ? selectedConvo.creator2.firstName
+                ? selectedConvo.creator2.username
                 : selectedConvo.participants
-                    .map((participant) => participant.firstName)
+                    .map((participant) => participant.username)
                     .join(", ")}
             </h3>
           </Row>
