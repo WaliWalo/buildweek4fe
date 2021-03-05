@@ -59,12 +59,12 @@ export default function Posts() {
                     <Card.Text className="uptxt d-flex align-items-left">
                       <div className="profpicwrapper">
                         <a href="#">
-                          <img class="profpic" src={user.picture} alt="" />
+                          <img class="profpic" src={post.user.picture} alt="" />
                         </a>
                       </div>
                       <div className="proftxtwrapper ">
                         <p className="proftxt">
-                          <strong>{user.username}</strong>
+                          <strong>{post.user.username}</strong>
                         </p>
                       </div>
                       <div className="iconupwrap">
