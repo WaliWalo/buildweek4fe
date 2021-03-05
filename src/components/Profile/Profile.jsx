@@ -31,14 +31,18 @@ const Profile = () => {
       if (meUser) {
         setMe(true);
         setUser(meUser);
-        setPostByUser(posts.filter((post) => post.user._id === meUser._id));
+        let userPosts = posts.filter((post) => post.user._id === meUser._id);
+        userPosts = userPosts.reverse();
+        setPostByUser(userPosts);
       }
     } else {
       const response = await getUserById(matchParams.id);
       if (response.statusText === "OK") {
         const data = response.data;
         setUser(data);
-        setPostByUser(posts.filter((post) => post.user._id === data._id));
+        let userPosts = posts.filter((post) => post.user._id === meUser._id);
+        userPosts = userPosts.reverse();
+        setPostByUser(userPosts);
         if (meUser && meUser._id !== data._id) {
           setMe(false);
         } else {

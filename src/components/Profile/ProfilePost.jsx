@@ -11,7 +11,7 @@ const ProfilePost = ({ post, handleShow, setSelectedPost }) => {
     const response = await getComments();
 
     if (response.statusText === "OK") {
-      const filteredComments = response.data.filter(
+      let filteredComments = response.data.filter(
         (comment) => comment.postId === post._id
       );
 
@@ -26,9 +26,13 @@ const ProfilePost = ({ post, handleShow, setSelectedPost }) => {
   }, []);
 
   return (
-    <Col xs={4} className="mb-2">
+    <Col xs={4} className="mb-3">
       <div className="postProfile">
-        <img src={post.urls[0]} className="img-fluid" />
+        <img
+          src={post.urls[0]}
+          className="img-fluid"
+          style={{ maxHeight: "320px" }}
+        />
         <div
           className="hoverOverPosts"
           onClick={() => {
