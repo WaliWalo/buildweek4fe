@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import "./Header.css";
 import { Navbar, Container, Nav, Modal, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-<<<<<<< Updated upstream
 import { useSelector } from "react-redux";
-
-export default function Header() {
-  const { user } = useSelector((state) => state);
-=======
 import Home from "../Home/Home";
 import Profile from "../Profile/Profile";
 import Message from "../Message/Message";
@@ -15,6 +10,7 @@ import { getPosts, postPics, postPost } from "../../api/postApi";
 import { useDispatch } from "react-redux";
 
 export default function Header() {
+  const { user } = useSelector((state) => state);
   const [show, setShow] = useState(false);
   const [caption, setCaption] = useState("");
   const [files, setFiles] = useState([]);
@@ -66,7 +62,6 @@ export default function Header() {
       console.log(response);
     }
   };
->>>>>>> Stashed changes
   return (
     <Navbar expand="lg">
       <Container className="HomeContainer">
