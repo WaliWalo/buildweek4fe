@@ -6,6 +6,7 @@ import {
   Card,
   InputGroup,
   FormControl,
+  Carousel,
 } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -70,7 +71,13 @@ export default function Posts() {
                         <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
                       </div>
                     </Card.Text>
-                    <Card.Img variant="top" src={post.urls[0]} />
+                    <Carousel>
+                      {post.urls.map((url) => (
+                        <Carousel.Item interval={1000}>
+                          <Card.Img variant="top" src={url} />
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
                     <Card.Body className="postcardbody">
                       <div className="iconwrapper">
                         <i className="far fa-heart fa-2x"></i>
