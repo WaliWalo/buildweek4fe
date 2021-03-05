@@ -48,7 +48,7 @@ const ProfileInfo = ({ user, postNo }) => {
               <strong>{postNo}</strong> posts
             </p>
             <p>
-              <strong>79</strong> followers
+              <strong>{user.followers.length}</strong> followers
             </p>
             <p>
               <strong>{user.following.length}</strong> folllowing
@@ -83,7 +83,7 @@ const ProfileInfo = ({ user, postNo }) => {
               <strong>{postNo}</strong> <p>posts </p>
             </div>
             <div className="ml-5 text-center">
-              <strong>79</strong> <p>followers </p>
+              <strong>{user.followers.length}</strong> <p>followers </p>
             </div>
             <div className="ml-5 text-center">
               <strong>{user.following.length}</strong> <p>following </p>
