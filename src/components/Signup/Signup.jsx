@@ -38,6 +38,7 @@ const Singup = () => {
           src="https://logos-world.net/wp-content/uploads/2020/04/Instagram-Logo.png"
           className="img-fluid"
           width="50%"
+          alt="instagram logo"
         />
       </div>
       <div className="fbgoogleLogin mx-5 mx-md-4 mx-lg-5">
@@ -52,7 +53,10 @@ const Singup = () => {
         >
           Sing up to see photos and videos from your friends
         </p>
-        <a href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}>
+        <a
+          href={`${process.env.REACT_APP_BE_URL}/facebookLogin`}
+          onClick={() => localStorage.setItem("LoggedIn", true)}
+        >
           <button className="w-100 LoginBnt d-flex align-items-center justify-content-center">
             <i
               className="fab fa-facebook-square mr-2"
@@ -61,7 +65,10 @@ const Singup = () => {
             Log in with Facebook
           </button>
         </a>
-        <a href={`${process.env.REACT_APP_BE_URL}/googleLogin`}>
+        <a
+          href={`${process.env.REACT_APP_BE_URL}/googleLogin`}
+          onClick={() => localStorage.setItem("LoggedIn", true)}
+        >
           <Button
             className="w-100 googleBtn d-flex align-items-center justify-content-center mt-3"
             variant="success"

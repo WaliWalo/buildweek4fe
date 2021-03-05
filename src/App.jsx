@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Container } from "react-bootstrap";
-import { Route, Router } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
 import LoginSingUp from "./components/Login/LoginSingUp";

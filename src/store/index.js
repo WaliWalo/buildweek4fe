@@ -6,6 +6,8 @@ import userReducer from "../reducers/user";
 import conversationsReducer from "../reducers/conversations";
 import messagesReducer from "../reducers/messages";
 import selectedConvoReducer from "../reducers/selectedConvo";
+import postsReducer from "../reducers/posts";
+import selectedPostReducer from "../reducers/selectedPost";
 
 import thunk from "redux-thunk";
 
@@ -19,16 +21,17 @@ const initialState = {
   conversations: [],
   messages: [],
   selectedConvo: null,
+  selectedPost: null,
 };
 
 const allReducers = combineReducers({
-
   error: errorsReducer,
   conversations: conversationsReducer,
   messages: messagesReducer,
   selectedConvo: selectedConvoReducer,
-   user: userReducer,
-
+  user: userReducer,
+  posts: postsReducer,
+  selectedPost: selectedPostReducer,
 });
 
 export default function configureStore() {

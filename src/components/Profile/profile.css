@@ -1,0 +1,35 @@
+.modal-content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+.modal-header button.close {
+  color: white;
+}
+
+.modal-header button.close:hover {
+  color: white;
+}
+
+.modal-header {
+  border: none;
+}
+
+.fas.fa-chevron-left,
+.fas.fa-chevron-right {
+  color: rgba(255, 255, 255, 0.664);
+}
+
+.fas.fa-chevron-left:hover,
+.fas.fa-chevron-right:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.911);
+}
+.modal-dialog {
+  max-width: 1200px !important;
+}
+@media (max-width: 1200px) {
+  .modal-dialog {
+    max-width: 100% !important;
+  }
+}
