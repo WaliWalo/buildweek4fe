@@ -1,10 +1,41 @@
 import React, { useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import EditProfile from "./EditProfile";
+import FollowersModal from "./FollowersModal";
 
-const ProfileInfo = ({ user, postNo }) => {
+const ProfileInfo = ({ user, postNo, me, meUser }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [showFollowing, setShowFollowing] = useState(false);
+
+  const handleCloseFollowing = () => setShowFollowing(false);
+  const handleShowFollowing = () => setShowFollowing(true);
+
+  const [editProfileModal, setEditProfileModal] = useState(false);
+
+  const handleCloseProfile = () => setEditProfileModal(false);
+  const handleShowProfile = () => setEditProfileModal(true);
   return (
     user && (
       <Row>
+        <FollowersModal
+          show={show}
+          handleClose={handleClose}
+          follow={user.followers}
+        />
+        <FollowersModal
+          show={showFollowing}
+          handleClose={handleCloseFollowing}
+          following={user.following}
+        />
+        <EditProfile
+          show={editProfileModal}
+          handleClose={handleCloseProfile}
+          user={user}
+        />
         <Col xs={3}>
           <img
             src={
@@ -28,15 +59,40 @@ const ProfileInfo = ({ user, postNo }) => {
             >
               {user.username}
             </p>
-
-            <button className="d-none d-md-block ml-4 EditProfileBtn">
-              Edit Profile
-            </button>
-            <i className="fas fa-cog fa-2x ml-3"></i>
+            <div
+              className="justify-content-between"
+              style={{ display: me ? "flex" : "none" }}
+            >
+              <button
+                className="d-none d-md-block ml-4 EditProfileBtn"
+                onClick={handleShowProfile}
+              >
+                Edit Profile
+              </button>
+              <i className="fas fa-cog fa-2x ml-3"></i>
+            </div>
+            <div
+              className="justify-content-start aling-items-center  ml-lg-5"
+              style={{ display: me ? "none" : "flex" }}
+            >
+              <button className="ml-4 EditProfileBtn">
+                {user.followers.find((u) => u._id === meUser._id)
+                  ? "Message"
+                  : "Follow"}
+              </button>
+              <button className="ml-4 EditProfileBtn">
+                <i className="fas fa-user"></i>
+                <i className="fas fa-check"></i>
+              </button>
+              <button className="ml-4 EditProfileBtn">
+                <i className="fas fa-sort-down"></i>
+              </button>
+            </div>
           </div>
           <button
-            className="d-md-none ml-4 EditProfileBtn mt-2"
+            className={!me ? "d-none" : "d-md-none ml-4 EditProfileBtn mt-2"}
             style={{ width: "96%" }}
+            onClick={handleShowProfile}
           >
             Edit Profile
           </button>
@@ -48,10 +104,10 @@ const ProfileInfo = ({ user, postNo }) => {
             <p>
               <strong>{postNo}</strong> posts
             </p>
-            <p>
-              <strong>79</strong> followers
+            <p onClick={handleShow} className="FollowORFolllowers">
+              <strong>{user.followers.length}</strong> followers
             </p>
-            <p>
+            <p onClick={handleShowFollowing} className="FollowORFolllowers">
               <strong>{user.following.length}</strong> folllowing
             </p>
           </div>
@@ -83,10 +139,18 @@ const ProfileInfo = ({ user, postNo }) => {
             <div className="ml-5 text-center">
               <strong>{postNo}</strong> <p>posts </p>
             </div>
-            <div className="ml-5 text-center">
-              <strong>79</strong> <p>followers </p>
+            <div
+              className="ml-5 text-center"
+              onClick={handleShow}
+              className="FollowORFolllowers"
+            >
+              <strong>{user.followers.length}</strong> <p>followers </p>
             </div>
-            <div className="ml-5 text-center">
+            <div
+              className="ml-5 text-center"
+              onClick={handleShowFollowing}
+              className="FollowORFolllowers"
+            >
               <strong>{user.following.length}</strong> <p>following </p>
             </div>
           </div>

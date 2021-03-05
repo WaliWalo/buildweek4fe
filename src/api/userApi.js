@@ -51,3 +51,49 @@ export const getUser = async () => {
     console.log(err);
   }
 };
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(
+      `${process.env.REACT_APP_BE_URL}/users/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const editUser = async (body) => {
+  try {
+    const response = await axios.put(
+      `${process.env.REACT_APP_BE_URL}/me`,
+      body,
+      {
+        withCredentials: true,
+      }
+    );
+
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const addUserImage = async (body) => {
+  try {
+    let response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/me/postProfilePic`,
+      body,
+      {
+        withCredentials: true,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

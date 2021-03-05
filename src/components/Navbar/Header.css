@@ -3,9 +3,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-body {
-  min-width: 620px;
-}
 
 nav {
   width: 100%;
@@ -57,6 +54,8 @@ nav img {
   position: absolute;
   border-radius: 50%;
   width: 28px;
+  height: 28px;
+  object-fit: cover;
 }
 
 .wrap-img:hover {
@@ -131,4 +130,8 @@ input:focus::-moz-placeholder {
 }
 input:focus::-ms-input-placeholder {
   color: #c9cbcc;
+}
+
+.HomeContainer.container {
+  min-width: 620px;
 }

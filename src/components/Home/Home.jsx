@@ -14,8 +14,10 @@ import Story from "./Story";
 export default function Home() {
   return (
     <div>
-      {/* <Header /> */}
-      <Container className="mt-5">
+
+      <Header />
+      <Container className="mt-5 HomeContainer">
+
         <Row>
           <Story />
         </Row>
