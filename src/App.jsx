@@ -22,7 +22,7 @@ function App() {
         <ProtectedRoute path="/profile/:id" exact component={Profile} />
         <ProtectedRoute path="/message" exact component={Message} />
 
-        <Footer />
+        {/* <Footer /> */}
       </Container>
     </div>
   );
