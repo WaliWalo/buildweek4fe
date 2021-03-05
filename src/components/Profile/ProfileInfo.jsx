@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import EditProfile from "./EditProfile";
 import FollowersModal from "./FollowersModal";
 
-const ProfileInfo = ({ user, postNo, me }) => {
+const ProfileInfo = ({ user, postNo, me, meUser }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -31,7 +31,11 @@ const ProfileInfo = ({ user, postNo, me }) => {
           handleClose={handleCloseFollowing}
           following={user.following}
         />
-        <EditProfile show={editProfileModal} handleClose={handleCloseProfile} />
+        <EditProfile
+          show={editProfileModal}
+          handleClose={handleCloseProfile}
+          user={user}
+        />
         <Col xs={3}>
           <img
             src={
@@ -71,7 +75,11 @@ const ProfileInfo = ({ user, postNo, me }) => {
               className="justify-content-start aling-items-center  ml-lg-5"
               style={{ display: me ? "none" : "flex" }}
             >
-              <button className="ml-4 EditProfileBtn">Message</button>
+              <button className="ml-4 EditProfileBtn">
+                {user.followers.find((u) => u._id === meUser._id)
+                  ? "Message"
+                  : "Follow"}
+              </button>
               <button className="ml-4 EditProfileBtn">
                 <i className="fas fa-user"></i>
                 <i className="fas fa-check"></i>

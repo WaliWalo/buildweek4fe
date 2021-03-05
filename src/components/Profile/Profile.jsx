@@ -8,7 +8,7 @@ import ProfilePost from "./ProfilePost";
 import ProfilePostModal from "./ProfilePostModal";
 import { useParams } from "react-router-dom";
 import "./profile.css";
-import { getUser, getUserById } from "../../api/userApi";
+import { getUserById } from "../../api/userApi";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -28,28 +28,17 @@ const Profile = () => {
 
   const fetchUser = async (id) => {
     if (id === "me") {
-      const response = await getUser();
-      if (response.statusText === "OK") {
-        console.log(response.data);
-        const data = response.data;
-        setUser(response.data);
-        setPostByUser(posts.filter((post) => post.user._id === data._id));
-        if (meUser && meUser._id === data._id) {
-          setMe(true);
-        } else {
-          setMe(false);
-        }
-      } else {
-        alert("something went wrong");
+      if (meUser) {
+        setUser(meUser);
+        setPostByUser(posts.filter((post) => post.user._id === meUser._id));
       }
     } else {
       const response = await getUserById(matchParams.id);
       if (response.statusText === "OK") {
-        console.log(response.data);
         const data = response.data;
         setUser(data);
         setPostByUser(posts.filter((post) => post.user._id === data._id));
-        if (meUser._id !== data._id) {
+        if (meUser && meUser._id !== data._id) {
           setMe(false);
         } else {
           setMe(true);
@@ -83,7 +72,14 @@ const Profile = () => {
 
   return (
     <div style={{ marginTop: "100px" }} className="mx-lg-5">
-      {user && <ProfileInfo user={user} postNo={postsByUser.length} me={me} />}
+      {user && (
+        <ProfileInfo
+          user={user}
+          postNo={postsByUser.length}
+          me={me}
+          meUser={meUser}
+        />
+      )}
       <Row>
         <ProfileNavBig pageNo={pageNo} setPageNo={setPageNo} />
         <ProfileNavSmall pageNo={pageNo} setPageNo={setPageNo} />
