@@ -29,6 +29,7 @@ const Profile = () => {
   const fetchUser = async (id) => {
     if (id === "me") {
       if (meUser) {
+        setMe(true);
         setUser(meUser);
         setPostByUser(posts.filter((post) => post.user._id === meUser._id));
       }
