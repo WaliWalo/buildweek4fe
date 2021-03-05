@@ -55,7 +55,7 @@ export default function Posts() {
               <Row>
                 <Col>
                   <Card>
-                    <Card.Text>
+                    <Card.Text className="uptxt d-flex align-items-left">
                       <div className="profpicwrapper">
                         <a href="#">
                           <img class="profpic" src={user.picture} alt="" />
