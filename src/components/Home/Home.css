@@ -14,6 +14,19 @@
 
 .mainpicwrapper {
   width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.mainpicwrapper:hover {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 3px solid red;
+}
+
+.mainpicwrapper {
+  width: 80px;
   margin-left: 0px;
 }
 

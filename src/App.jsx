@@ -15,15 +15,13 @@ import ProtectedRoute from "./customComponent/ProtectedRoute";
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/*  <Header /> */}
       <Container>
         <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
         <ProtectedRoute path="/home" exact component={Home} />
         <ProtectedRoute path="/profile" exact component={Profile} />
         <ProtectedRoute path="/message" exact component={Message} />
         <ProtectedRoute path="/editProfile" exact component={EditProfile} />
-
-        <Footer />
       </Container>
     </div>
   );
