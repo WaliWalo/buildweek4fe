@@ -20,7 +20,7 @@ export default function Post() {
         <Row>
           <Col>
             <Card>
-              <Card.Text className="uptxt">
+              <Card.Text className="uptxt d-flex align-items-left">
                 <div className="profpicwrapper">
                   <a href="#">
                     <img class="profpic" src={Ermal} alt="" />
@@ -43,7 +43,7 @@ export default function Post() {
                   <i className="far fa-paper-plane fa-2x ml-3"></i>
                   <i className="far fa-bookmark fa-2x "></i>
                 </div>
-                <Card.Text className="like">
+                <Card.Text className="like d-flex align-items-left">
                   <div className="likepic-wrapper">
                     <a href="#">
                       <img class="likepic" src={Jin1} alt="" />
