@@ -9,10 +9,6 @@ const PostComments = ({ post }) => {
   const [comments, setComments] = useState([]);
   const [commentsLength, setCommentsLength] = useState(0);
   const [content, setContent] = useState("");
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const postComment = async () => {
     const response = await addComment({ content, postId: post._id });
@@ -77,7 +73,7 @@ const PostComments = ({ post }) => {
       </Card.Text>
       <OneComment comment={post} />
       {commentsLength > 0 && (
-        <p className="mt-2 ml-4" style={{ color: "gray" }} onClick={handleShow}>
+        <p className="mt-2 ml-4" style={{ color: "gray" }}>
           View all {commentsLength} comments
         </p>
       )}
