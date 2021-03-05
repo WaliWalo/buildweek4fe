@@ -17,13 +17,14 @@ function App() {
     <div className="App">
       <Header />
       <Container>
-        <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
+        <Home />
+        {/*         <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
         <ProtectedRoute path="/home" exact component={Home} />
         <ProtectedRoute path="/profile" exact component={Profile} />
         <ProtectedRoute path="/message" exact component={Message} />
         <ProtectedRoute path="/editProfile" exact component={EditProfile} />
 
-        <Footer />
+        <Footer /> */}
       </Container>
     </div>
   );
