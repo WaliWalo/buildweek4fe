@@ -66,7 +66,7 @@ nav img {
   height: 30px;
 }
 
-span {
+.spanheader {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -77,7 +77,7 @@ span {
   justify-content: center;
 }
 
-span a .fas {
+.spanheader a .fas {
   margin-right: 20px;
 }
 
