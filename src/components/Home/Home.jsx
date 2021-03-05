@@ -17,9 +17,13 @@ export default function Home() {
       {/* <Header /> */}
       <Container className="mt-5">
         <Row>
+          <Story />
+        </Row>
+        <Row>
           <Col className="d-block" md={8}>
             {/* {`xs={{ span: 8, offset: 0 }}`} */}
-            <Post />
+            {/* <Post /> */}
+            <Posts />
           </Col>
           <Col lg={4} className="d-none d-lg-block d-xl-block">
             <Row>
@@ -208,7 +212,6 @@ export default function Home() {
             </Row>
           </Col>
         </Row>
-        <Posts />
       </Container>
     </div>
   );
