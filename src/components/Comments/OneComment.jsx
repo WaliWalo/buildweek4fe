@@ -1,6 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { addRemoveLike } from "../../api/commentsApi";
 
-const OneComment = ({ comment }) => {
+const OneComment = ({ comment, fetchComments }) => {
+  const userProfile = useSelector((state) => state.user);
+
+  const postLike = async () => {
+    const response = await addRemoveLike(comment._id, userProfile._id);
+
+    if (response.status === 200 || response.status === 203) {
+      fetchComments();
+    }
+  };
   return (
     <div className="d-flex justify-content-between">
       <div className="d-flex justify-content-start  mt-3">
@@ -32,7 +43,7 @@ const OneComment = ({ comment }) => {
                   fontWeight: "bold",
                 }}
               >
-                2 likes
+                {comment.likes.length} likes
               </p>
               <p
                 style={{
@@ -50,8 +61,13 @@ const OneComment = ({ comment }) => {
       </div>
       {comment.userId && (
         <i
-          className="far fa-heart ml-1 profileHeart mr-2 mt-3"
+          className={
+            comment.likes.find((user) => user._id === userProfile._id)
+              ? "fas fa-heart ml-1 profileHeart mr-2 mt-3 text-danger"
+              : "far fa-heart ml-1 profileHeart mr-2 mt-3"
+          }
           style={{ fontSize: "13px" }}
+          onClick={() => postLike()}
         ></i>
       )}
     </div>

@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { Modal, Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import CommentList from "../Comments/CommentList";
 
 const ProfilePostModal = ({
   show,
   handleClose,
-  post,
   nextPost,
   prevPost,
   dontShowLeftArrow,
   dontShowRightArrow,
 }) => {
+  const { selectedPost } = useSelector((state) => state);
   let showLeftArrow = dontShowLeftArrow();
   let showRightArrow = dontShowRightArrow();
 
@@ -34,10 +35,13 @@ const ProfilePostModal = ({
             </Col>
             <Col xs={10} style={{ background: "white" }}>
               <Row>
-                <Col xs={12} sm={7}>
-                  <img src={post && post.urls[0]} className="img-fluid" />
+                <Col xs={12} md={7}>
+                  <img
+                    src={selectedPost && selectedPost.urls[0]}
+                    className="img-fluid"
+                  />
                 </Col>
-                {post && <CommentList post={post} />}
+                {selectedPost && <CommentList />}
               </Row>
             </Col>
             <Col

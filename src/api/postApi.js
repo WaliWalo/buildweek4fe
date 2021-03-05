@@ -11,3 +11,19 @@ export const getPosts = async () => {
     console.log(error);
   }
 };
+
+export const addRemovePostLike = async (postId, userId) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_BE_URL}/posts/${postId}/addRemoveLike/${userId}`,
+      {},
+      {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      }
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};

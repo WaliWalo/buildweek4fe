@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { getComments } from "../../api/commentsApi";
 import AddComment from "./AddComment";
 import OneComment from "./OneComment";
 
-const CommentList = ({ post }) => {
+const CommentList = () => {
+  const { selectedPost } = useSelector((state) => state);
   const [comments, setComments] = useState([]);
 
   const fetchComments = async () => {
@@ -12,8 +14,9 @@ const CommentList = ({ post }) => {
 
     if (response.statusText === "OK") {
       const filteredComments = response.data.filter(
-        (comment) => comment.postId === post._id
+        (comment) => comment.postId === selectedPost._id
       );
+
       setComments(filteredComments);
     } else {
       alert("something went wrong");
@@ -22,14 +25,14 @@ const CommentList = ({ post }) => {
 
   useEffect(() => {
     fetchComments();
-  }, [post]);
+  }, [selectedPost]);
 
   return (
-    <Col xs={5} className="d-none d-sm-block">
+    <Col xs={5} className="d-none d-md-block">
       <div className="d-flex justify-content-between align-items-center mt-3 pb-4  border-bottom border-muted">
         <div className=" CommentList d-flex justify-content-between align-items-center">
           <img
-            src={post.user.picture}
+            src={selectedPost.user.picture}
             alt="user pic"
             width="34px"
             height="34px"
@@ -39,21 +42,25 @@ const CommentList = ({ post }) => {
             className="ml-3 mb-0"
             style={{ fontWeight: "bold", fontSize: "14px" }}
           >
-            {post.user.username}
+            {selectedPost.user.username}
           </p>
         </div>
         <i className="fas fa-ellipsis-h mr-3"></i>
       </div>
       <div
         className="border-bottom  border-muted"
-        style={{ height: "50%", overflowY: "auto" }}
+        style={{ height: "340px", overflowY: "auto" }}
       >
-        <OneComment comment={post} />
-        {comments.map((cm) => (
-          <OneComment comment={cm} />
+        <OneComment comment={selectedPost} />
+        {comments.map((cm, index) => (
+          <OneComment
+            key={`selectedPostComments${index}`}
+            comment={cm}
+            fetchComments={fetchComments}
+          />
         ))}
       </div>
-      <AddComment post={post} />
+      <AddComment fetchComments={fetchComments} />
     </Col>
   );
 };
