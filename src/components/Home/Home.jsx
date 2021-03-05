@@ -8,6 +8,8 @@ import Ibra from "../../assets/images/ibra.jpg";
 import Jin1 from "../../assets/images/jin1.png";
 import Jin2 from "../../assets/images/jin2.png";
 import Tobia from "../../assets/images/tobia.png";
+import Posts from "./Posts";
+import Story from "./Story";
 
 export default function Home() {
   return (
@@ -206,6 +208,7 @@ export default function Home() {
             </Row>
           </Col>
         </Row>
+        <Posts />
       </Container>
     </div>
   );
