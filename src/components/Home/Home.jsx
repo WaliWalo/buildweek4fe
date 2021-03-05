@@ -2,12 +2,17 @@ import React from "react";
 import Header from "../Navbar/Header";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Home.css";
+import Posts from "./Posts";
+import Story from "./Story";
 
 export default function Home() {
   return (
     <div>
       <Header />
       <Container className="mt-5">
+        <Row>
+          <Story />
+        </Row>
         <Row>
           <Col md={{ span: 6, offset: 2 }}>{`md={{ span: 8, offset: 0 }}`}</Col>
           <Col md={2} className="d-none d-lg-block d-xl-block">
@@ -25,6 +30,7 @@ export default function Home() {
             </Row>
           </Col>
         </Row>
+        <Posts />
       </Container>
     </div>
   );
