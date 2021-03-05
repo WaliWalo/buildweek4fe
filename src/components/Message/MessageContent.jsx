@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Image, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
-import { fetchImgUrl } from "../../api/messageApi";
+import { fetchImgUrl, fetchMessages } from "../../api/messageApi";
 import "./MessageContent.css";
+import { Heart, HeartFill } from "react-bootstrap-icons";
 
 export default function MessageContent() {
   const dispatch = useDispatch();
@@ -101,6 +102,28 @@ export default function MessageContent() {
     }
   };
 
+  socket.on("likeMessage", async (msg) => {
+    console.log("WEIRD ", selectedConvo);
+    if (selectedConvo) {
+      const response = await fetchMessages(selectedConvo._id);
+      if (response.ok) {
+        let data = await response.json();
+
+        dispatch((dispatch) => {
+          dispatch({ type: "ADD_TO_MESSAGES", payload: data });
+        });
+      }
+    }
+  });
+
+  const handleLike = async (msgId, userId) => {
+    await socket.emit("likeMessage", {
+      convoId: selectedConvo._id,
+      msgId,
+      userId,
+    });
+  };
+
   return (
     <div className="p-3">
       {selectedConvo && (
@@ -165,16 +188,32 @@ export default function MessageContent() {
                               >
                                 {user.firstName}
                               </p>
-                              <p
-                                style={{
-                                  fontSize: "20px",
-                                  borderRadius: "25px",
-                                  background: "#EFEFEF",
-                                  padding: "15px",
-                                }}
-                              >
-                                {message.content}
-                              </p>
+                              <div className="d-flex">
+                                <div
+                                  onClick={() =>
+                                    handleLike(message._id, user._id)
+                                  }
+                                >
+                                  {message.like.length > 0 ? (
+                                    <HeartFill
+                                      size={30}
+                                      className="mr-4 mt-3"
+                                    />
+                                  ) : (
+                                    <Heart size={30} className="mr-4 mt-3" />
+                                  )}
+                                </div>
+                                <p
+                                  style={{
+                                    fontSize: "20px",
+                                    borderRadius: "25px",
+                                    background: "#EFEFEF",
+                                    padding: "15px",
+                                  }}
+                                >
+                                  {message.content}
+                                </p>{" "}
+                              </div>
                               {message.url && (
                                 <Image
                                   src={message.url}
@@ -218,16 +257,32 @@ export default function MessageContent() {
                               <p className="m-0" style={{ fontWeight: "bold" }}>
                                 {message.sender.firstName}
                               </p>
-                              <p
-                                style={{
-                                  fontSize: "20px",
-                                  borderRadius: "25px",
-                                  background: "#EFEFEF",
-                                  padding: "15px",
-                                }}
-                              >
-                                {message.content}
-                              </p>
+                              <div className="d-flex">
+                                <p
+                                  style={{
+                                    fontSize: "20px",
+                                    borderRadius: "25px",
+                                    background: "#EFEFEF",
+                                    padding: "15px",
+                                  }}
+                                >
+                                  {message.content}
+                                </p>
+                                <div
+                                  onClick={() =>
+                                    handleLike(message._id, user._id)
+                                  }
+                                >
+                                  {message.like.length > 0 ? (
+                                    <HeartFill
+                                      size={30}
+                                      className="ml-4 mt-3"
+                                    />
+                                  ) : (
+                                    <Heart size={30} className="ml-4 mt-3" />
+                                  )}
+                                </div>
+                              </div>
                               {message.url && (
                                 <Image
                                   src={message.url}

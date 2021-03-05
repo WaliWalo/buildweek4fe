@@ -30,7 +30,7 @@ export default function Header() {
             />
           </form>
         </div>
-        <span>
+        <span className="spanheader">
           <Link to="/home" /* exact component={Home} */>
             <i class="fas fa-xs fa-home"></i>
           </Link>

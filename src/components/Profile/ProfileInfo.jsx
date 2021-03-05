@@ -97,10 +97,11 @@ const ProfileInfo = ({ user, postNo, me, meUser }) => {
             Edit Profile
           </button>
           <div
-            className="d-none d-md-flex justify-content-between align-items-center mt-3"
+            className="d-none d-md-flex 
+             align-items-center mt-3 userstats"
             style={{ color: "#4d4d4d" }}
           >
-            <p className="ml-5">
+            <p>
               <strong>{postNo}</strong> posts
             </p>
             <p onClick={handleShow} className="FollowORFolllowers">
