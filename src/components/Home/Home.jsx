@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Navbar/Header";
 import Post from "../Post/Post";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import "./Home.css";
 import Ermal from "../../assets/images/erm.png";
 import Ibra from "../../assets/images/ibra.jpg";
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <Container className="mt-5">
         <Row>
           <Story />
@@ -29,7 +29,7 @@ const Home = () => {
             {/* <Post /> */}
             <Posts />
           </Col>
-          <Col lg={4} className="d-none d-lg-block d-xl-block">
+          <Col lg={4} className="d-none d-lg-block d-xl-block .puppa">
             <Row>
               <Col className="left-up d-flex">
                 <div className="mainpicwrapper">

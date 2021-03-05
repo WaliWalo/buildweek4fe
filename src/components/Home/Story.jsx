@@ -101,12 +101,10 @@ export default function Story() {
 
   return (
     <Container>
-      <Button variant="primary" onClick={handleShow}>
-        Launch Story
-      </Button>
-      <Button variant="primary" onClick={handleShowCreate}>
-        Launch CREATE STORY
-      </Button>
+      <i class="fab fa-instagram fa-3x" onClick={handleShow}></i>
+
+      <i class="fas fa-plus-circle fa-3x" onClick={handleShowCreate}></i>
+
       <Modal show={show} centered onHide={handleClose}>
         {stories.length > 0 && (
           <StoriesComp

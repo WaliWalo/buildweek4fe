@@ -15,7 +15,7 @@ import ProtectedRoute from "./customComponent/ProtectedRoute";
 function App() {
   return (
     <div className="App">
-      {/*  <Header /> */}
+      <Header />
       <Container>
         <Route path="/" exact render={(props) => <LoginSingUp {...props} />} />
         <ProtectedRoute path="/home" exact component={Home} />
