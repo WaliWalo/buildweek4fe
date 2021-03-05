@@ -32,7 +32,7 @@ const Profile = () => {
         setMe(true);
         setUser(meUser);
         let userPosts = posts.filter((post) => post.user._id === meUser._id);
-        // userPosts = userPosts.reverse();
+        userPosts = userPosts.reverse();
         setPostByUser(userPosts);
       }
     } else {
@@ -42,7 +42,7 @@ const Profile = () => {
         setUser(data);
 
         let userPosts = posts.filter((post) => post.user._id === data._id);
-        // userPosts = userPosts.reverse();
+        userPosts = userPosts.reverse();
         setPostByUser(userPosts);
 
         if (meUser && meUser._id !== data._id) {
