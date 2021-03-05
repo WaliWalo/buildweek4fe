@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../Navbar/Header";
+import Post from "../Post/Post";
 import { Container, Row, Col } from "react-bootstrap";
 import "./Home.css";
 import Ermal from "../../assets/images/erm.png";
@@ -14,162 +15,146 @@ export default function Home() {
       {/* <Header /> */}
       <Container className="mt-5">
         <Row>
-          <Col xs={{ span: 6, offset: 1 }}>{`xs={{ span: 8, offset: 0 }}`}</Col>
-          <Col xs={4} className="d-none d-lg-block d-xl-block">
+          <Col xs={{ span: 6, offset: 1 }}>
+            {/* {`xs={{ span: 8, offset: 0 }}`} */}
+            <Post />
+          </Col>
+          <Col
+            xs={{ span: 3, offset: 1 }}
+            className="d-none d-lg-block d-xl-block"
+          >
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="mainpicwrapper">
-                    <a href="#">
-                      <img
-                        class="mainpic"
-                        src="https://via.placeholder.com/200"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="maintxtwrap">
-                    <p className="maintxt">
-                      <strong>ProfileName</strong>
-                      {"\n"}
-                      subname
-                    </p>
-                  </div>
-                  <div className="mainlinkwrap">
-                    <strong>
-                      <a href="#">Switch</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="mainpicwrapper">
+                  <a href="#">
+                    <img
+                      class="mainpic"
+                      src="https://via.placeholder.com/200"
+                      alt=""
+                    />
+                  </a>
+                </div>
+                <div className="maintxtwrap">
+                  <p className="maintxt">
+                    <strong>ProfileName</strong>
+                  </p>
+                </div>
+                <div className="mainlinkwrap">
+                  <strong>
+                    <a href="#">Switch</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row className="mt-4">
-              <Col className="left-up">
-                <span>
-                  <div className="centertxtwrap">
-                    <span className="centertxt">
-                      <strong>
-                        Suggestions for you {"           "}
-                        <a href="#">See All</a>
-                      </strong>
-                    </span>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="centertxtwrap">
+                  <p className="centertxt">
+                    <strong>Suggestions for you</strong>
+                  </p>
+                </div>
+                <div>
+                  <p className="centertxt">
+                    <strong>
+                      <a href="#">See All</a>
+                    </strong>
+                  </p>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="pic-wrapper">
-                    <a href="#">
-                      <img class="pic" src={Ermal} alt="" />
-                    </a>
-                  </div>
-                  <div className="text-wrapper  ml-2 mt-4">
-                    <p className="text">
-                      <strong>FakeErmal</strong>
-                      {"\n"}
-                      happyermal
-                    </p>
-                  </div>
-                  <div className="link-wrap">
-                    <strong>
-                      <a href="#">Follow</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="pic-wrapper">
+                  <a href="#">
+                    <img class="pic" src={Ermal} alt="" />
+                  </a>
+                </div>
+                <div className="text-wrapper  ml-2 mt-4">
+                  <p className="text">
+                    <strong>fakeermal</strong>
+                  </p>
+                </div>
+                <div className="link-wrap">
+                  <strong>
+                    <a href="#">Follow</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="pic-wrapper">
-                    <a href="#">
-                      <img class="pic" src={Ibra} alt="" />
-                    </a>
-                  </div>
-                  <div className="text-wrapper  ml-2 mt-4">
-                    <p className="text">
-                      <strong>ErmalOfficial</strong>
-                      {"\n"}
-                      therealermal
-                    </p>
-                  </div>
-                  <div className="link-wrap">
-                    <strong>
-                      <a href="#">Follow</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="pic-wrapper">
+                  <a href="#">
+                    <img class="pic" src={Ibra} alt="" />
+                  </a>
+                </div>
+                <div className="text-wrapper  ml-2 mt-4">
+                  <p className="text">
+                    <strong>ermalofficial</strong>
+                  </p>
+                </div>
+                <div className="link-wrap">
+                  <strong>
+                    <a href="#">Follow</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="pic-wrapper">
-                    <a href="#">
-                      <img class="pic" src={Jin1} alt="" />
-                    </a>
-                  </div>
-                  <div className="text-wrapper  ml-2 mt-4">
-                    <p className="text">
-                      <strong>SoberJin</strong>
-                      {"\n"}
-                      sadjin
-                    </p>
-                  </div>
-                  <div className="link-wrap">
-                    <strong>
-                      <a href="#">Follow</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="pic-wrapper">
+                  <a href="#">
+                    <img class="pic" src={Jin1} alt="" />
+                  </a>
+                </div>
+                <div className="text-wrapper  ml-2 mt-4">
+                  <p className="text">
+                    <strong>soberjin</strong>
+                  </p>
+                </div>
+                <div className="link-wrap">
+                  <strong>
+                    <a href="#">Follow</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="pic-wrapper">
-                    <a href="#">
-                      <img class="pic" src={Jin2} alt="" />
-                    </a>
-                  </div>
-                  <div className="text-wrapper  ml-2 mt-4">
-                    <p className="text">
-                      <strong>SeriousJin</strong>
-                      {"\n"}
-                      jinwithoutbooze
-                    </p>
-                  </div>
-                  <div className="link-wrap">
-                    <strong>
-                      <a href="#">Follow</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="pic-wrapper">
+                  <a href="#">
+                    <img class="pic" src={Jin2} alt="" />
+                  </a>
+                </div>
+                <div className="text-wrapper  ml-2 mt-4">
+                  <p className="text">
+                    <strong>jinwithbooze</strong>
+                  </p>
+                </div>
+                <div className="link-wrap">
+                  <strong>
+                    <a href="#">Follow</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row>
-              <Col className="left-up">
-                <span>
-                  <div className="pic-wrapper">
-                    <a href="#">
-                      <img class="pic" src={Tobia} alt="" />
-                    </a>
-                  </div>
-                  <div className="text-wrapper  ml-2 mt-4">
-                    <p className="text">
-                      <strong>TobiaDeAngelis</strong>
-                      {"\n"}
-                      ilvolosinger
-                    </p>
-                  </div>
-                  <div className="link-wrap">
-                    <strong>
-                      <a href="#">Follow</a>
-                    </strong>
-                  </div>
-                </span>
+              <Col className="left-up d-flex">
+                <div className="pic-wrapper">
+                  <a href="#">
+                    <img class="pic" src={Tobia} alt="" />
+                  </a>
+                </div>
+                <div className="text-wrapper  ml-2 mt-4">
+                  <p className="text">
+                    <strong>tobiadeangelis</strong>
+                  </p>
+                </div>
+                <div className="link-wrap">
+                  <strong>
+                    <a href="#">Follow</a>
+                  </strong>
+                </div>
               </Col>
             </Row>
             <Row>

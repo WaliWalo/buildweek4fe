@@ -33,21 +33,21 @@ export default function Header() {
         </div>
         <span>
           <Link to="/home" /* exact component={Home} */>
-            <i class="fas fa-xs fa-home"></i>
+            <i class="far fa-xs fa-home"></i>
           </Link>
           <Link to="/addpost">
-            <i class="fas fa-xs fa-plus-square"></i>
+            <i class="far fa-xs fa-plus-square"></i>
           </Link>
           <Link
             to="/message" /* exact render={(props) => <Message {...props} />} */
           >
-            <i class="fas fa-xs fa-paper-plane"></i>
+            <i className="far fa-xs fa-paper-plane"></i>
           </Link>
           <Link to="/randomposts" /* MAYBE LATER*/>
-            <i class="fas fa-xs fa-compass"></i>
+            <i class="far fa-xs fa-compass"></i>
           </Link>
           <Link to="/likes">
-            <i class="fas fa-xs fa-heart"></i>
+            <i className="far fa-xs fa-heart"></i>
           </Link>
           <div class="wrap-img">
             <Link

@@ -1,0 +1,82 @@
+.profpicwrapper {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 50%;
+
+  border: solid 2px red;
+}
+
+.profpic {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin: 3px;
+}
+
+.proftxtwrapper {
+  margin-top: 30px;
+  margin-left: 10px;
+  width: 80%;
+}
+
+.iconupwrap {
+  /* align-content: right; */
+  margin-top: 30px;
+}
+
+.far.fa-bookmark {
+  margin-left: 24rem;
+}
+
+.card.body {
+  justify-content: space-between;
+}
+.iconwrapper a {
+  font-size: 32px;
+  text-decoration: none;
+  color: black;
+}
+
+.iconwrapper a:link {
+  font-size: 32px;
+  text-decoration: none;
+  color: black;
+}
+
+.iconwrapper a:visited {
+  font-size: 32px;
+  text-decoration: none;
+  color: black;
+}
+
+.iconwrapper a:hover {
+  font-size: 32px;
+  text-decoration: none;
+  color: grey;
+}
+
+.likepic-wrapper {
+  width: 25px;
+  height: 25x;
+  margin-top: 20px;
+
+  border-radius: 50%;
+}
+
+.likepic {
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+}
+
+.liketext-wrapper {
+  margin-top: 30px;
+  margin-left: 10px;
+  width: 80%;
+}
+
+.formcontrol {
+  width: 70%;
+}
