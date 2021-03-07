@@ -1,6 +1,10 @@
-export const SEARCH = "SEARCH";
-
 //value = user?
-export function search(value) {
-  return { type: SEARCH, value };
+//export function search(value) {
+export default function (state = {}, action) {
+  switch (action.type) {
+    case "SEARCH":
+      return action.payload;
+    default:
+      return state;
+  }
 }
