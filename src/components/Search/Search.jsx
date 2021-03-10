@@ -1,4 +1,4 @@
-/* import React from "react";
+import React from "react";
 import { ListGroup } from "react-bootstrap";
 import onClickOutside from "react-onclickoutside";
 
@@ -71,4 +71,3 @@ class ShowSearchResult extends React.Component {
 }
 
 export default onClickOutside(ShowSearchResult);
- */
