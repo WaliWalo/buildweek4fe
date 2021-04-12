@@ -110,7 +110,11 @@ export default function Header() {
             >
               <img
                 class="profile-img"
-                src={user && user.picture}
+                src={
+                  user
+                    ? user.picture
+                    : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+                }
                 /* {this.state.user.picture} */ alt="user avatar"
               />
             </Link>
@@ -141,17 +145,21 @@ export default function Header() {
                   accept=".jpg"
                 />
                 {files && (
-                  <Button type="submit" variant="primary" onClick={handleClose}>
-                    Save Changes
-                  </Button>
+                  <div id="postBtn">
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      onClick={handleClose}
+                    >
+                      Post
+                    </Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Close
+                    </Button>
+                  </div>
                 )}
               </Form>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-            </Modal.Footer>
           </div>
         </Modal>
       </Container>

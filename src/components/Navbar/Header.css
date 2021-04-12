@@ -135,3 +135,16 @@ input:focus::-ms-input-placeholder {
 .HomeContainer.container {
   min-width: 620px;
 }
+
+#postBtn {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+}
+
+#postBtn button {
+  margin: 0.5rem;
+}

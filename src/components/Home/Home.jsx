@@ -18,9 +18,7 @@ export default function Home() {
     <div>
       {/* <Header /> */}
       <Container className="mt-5 HomeContainer">
-        <Row>
-          <Story />
-        </Row>
+        <Row>{/* <Story /> */}</Row>
         <Row>
           <Col className="d-block" md={8}>
             {/* {`xs={{ span: 8, offset: 0 }}`} */}

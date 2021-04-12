@@ -39,7 +39,7 @@ const ProfileInfo = ({ user, postNo, me, meUser }) => {
         <Col xs={3}>
           <img
             src={
-              user.picture
+              user
                 ? user.picture
                 : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
             }
