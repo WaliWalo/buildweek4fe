@@ -134,7 +134,7 @@ export default function MessageContent() {
               src={
                 selectedConvo.creator2 && selectedConvo.creator2.picture
                   ? selectedConvo.creator2.picture
-                  : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
+                  : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
               }
               roundedCircle
               style={{
@@ -243,7 +243,7 @@ export default function MessageContent() {
                                 src={
                                   message.sender && message.sender.picture
                                     ? message.sender.picture
-                                    : "https://www.kindpng.com/picc/m/78-785827_user-profile-avatar-login-account-male-user-icon.png"
+                                    : "https://st4.depositphotos.com/4329009/19956/v/380/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
                                 }
                                 roundedCircle
                                 style={{
