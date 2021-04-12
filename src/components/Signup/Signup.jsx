@@ -14,7 +14,7 @@ const Singup = () => {
     e.preventDefault(e);
 
     const firstName = fullName.split(" ")[0];
-    const lastName = fullName.split(" ")[1];
+    const lastName = fullName.split(" ")[1] || " ";
     console.log({ firstName, lastName });
 
     const resp = await registerUser({

@@ -27,13 +27,23 @@ export const loginUser = async (body) => {
 
 export const registerUser = async (body) => {
   try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_BE_URL}/register`,
-      body,
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    // const response = await axios.post(
+    //   `${process.env.REACT_APP_BE_URL}/register`,
+    //   body,
+    //   {
+    //     headers: { "Content-Type": "application/json" },
+    //   }
+    // );
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    const response = await fetch(`${process.env.REACT_APP_BE_URL}/register`, {
+      method: "POST",
+      headers: myHeaders,
+      credentials: "include",
+      body: JSON.stringify(body),
+    });
+
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
