@@ -3,8 +3,10 @@ import { ListGroup } from "react-bootstrap";
 import onClickOutside from "react-onclickoutside";
 
 import { Link } from "react-router-dom";
-import "./styles.scss";
-class ShowSearchResult extends React.Component {
+
+const searchUser = useSelector((state) => state.user);
+
+/* class ShowSearchResult extends React.Component {
   state = { users: [] };
   handleClickOutside = () => {
     this.props.hideSearchBar();
@@ -71,3 +73,4 @@ class ShowSearchResult extends React.Component {
 }
 
 export default onClickOutside(ShowSearchResult);
+ */
